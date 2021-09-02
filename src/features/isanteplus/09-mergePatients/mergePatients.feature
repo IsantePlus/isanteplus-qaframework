@@ -1,0 +1,1 @@
+Feature: Merge patients
