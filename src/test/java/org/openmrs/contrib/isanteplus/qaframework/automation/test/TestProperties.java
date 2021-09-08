@@ -77,9 +77,9 @@ public class TestProperties {
 		return getProperty(WEBDRIVER_PROPERTY, DEFAULT_WEBDRIVER);
 	}
 	
-	 public String getLocation() {
-	        return getProperty(LOGIN_LOCATION_PROPERTY, DEFAULT_LOGIN_LOCATION);
-	    }
+	public String getLocation() {
+	    return getProperty(LOGIN_LOCATION_PROPERTY, DEFAULT_LOGIN_LOCATION);
+    }
 	
 	public WebDriverType getWebDriver() {
 		try {
