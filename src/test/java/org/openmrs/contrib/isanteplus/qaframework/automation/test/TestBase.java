@@ -80,14 +80,6 @@ public class TestBase {
 	
 	protected Page page;
 	
-	public TestBase() {
-		try {
-			startWebDriver();
-		}
-		catch (Exception e) {
-			fail(e.getMessage());
-		}	
-	}
 	
 	@Before
 	public void startWebDriver() throws Exception {
