@@ -1,7 +1,5 @@
 package org.openmrs.contrib.isanteplus.qaframework.automation.test;
 
-import org.openmrs.contrib.isanteplus.qaframework.automation.page.Page;
-
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -11,6 +9,8 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
+
+import javax.xml.ws.Response;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -22,12 +22,19 @@ import org.apache.commons.vfs2.VFS;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.openmrs.contrib.isanteplus.qaframework.automation.page.HomePage;
+import org.openmrs.contrib.isanteplus.qaframework.automation.page.LoginPage;
+import org.openmrs.contrib.isanteplus.qaframework.automation.page.Page;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+
+import jakarta.ws.rs.ServerErrorException;
+import jakarta.ws.rs.client.ClientBuilder;
 
 /**
  * Superclass for all UI Tests. Contains lots of handy "utilities" needed to setup and tear down
@@ -49,9 +56,10 @@ public class TestBase {
 	
 	private static volatile boolean serverFailure = false;
 	
-	private WebDriver driver;
-	
+	protected WebDriver driver;
+	protected HomePage homePage;
 	protected Page page;
+	private static final By SELECTED_LOCATION = By.id("selected-location");
 	
 	public TestBase() {
 		try {
@@ -200,4 +208,41 @@ public class TestBase {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		return formatter.format(date);
 	}
+  
+	@Before
+    public void before() {
+        homePage = new HomePage(page);
+    }
+
+    public String getLocationUuid(Page page) {
+        return driver.findElement(SELECTED_LOCATION).getAttribute("location-uuid");
+    }
+    
+    public LoginPage goToLoginPage() {
+        LoginPage loginPage = getLoginPage();
+
+        Response response = (Response) ClientBuilder.newClient()
+                .target(TestProperties.instance().getWebAppUrl())
+                .path(loginPage.getPageUrl())
+                .request().get();
+
+        int status = ((jakarta.ws.rs.core.Response) response).getStatus();
+
+        if (status >= 400 && status <= 599) {
+            throw new ServerErrorException(((jakarta.ws.rs.core.Response) response).getStatusInfo().getReasonPhrase(), status);
+        }
+
+        loginPage.go();
+        loginPage.waitForPage();
+
+        //refresh, just to be sure all css files and images are loaded properly
+        driver.navigate().refresh();
+        loginPage.waitForPage();
+
+        return loginPage;
+    }
+
+    protected LoginPage getLoginPage() {
+        return new LoginPage(driver);
+    }
 }

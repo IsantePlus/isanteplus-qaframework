@@ -22,6 +22,10 @@ public class TestProperties {
 	
 	public static final String WEBAPP_URL_PROPERTY = "webapp.url";
 	
+	public static final String LOGIN_LOCATION_PROPERTY = "login.location";
+	
+	public static final String DEFAULT_LOGIN_LOCATION = "Outpatient Clinic";
+	
 	public static final String DEFAULT_WEBAPP_URL = "http://isanteplusdemo.com:8080/openmrs";
 	
 	public static final String HEADLESS_PROPERTY = "headless";
@@ -73,6 +77,10 @@ public class TestProperties {
 		return getProperty(WEBDRIVER_PROPERTY, DEFAULT_WEBDRIVER);
 	}
 	
+	 public String getLocation() {
+	        return getProperty(LOGIN_LOCATION_PROPERTY, DEFAULT_LOGIN_LOCATION);
+	    }
+	
 	public WebDriverType getWebDriver() {
 		try {
 			return WebDriverType.valueOf(getBrowser());
@@ -104,4 +112,5 @@ public class TestProperties {
 		chrome,
 		firefox
 	}
+
 }

@@ -68,7 +68,8 @@ public class LoginPage extends Page {
         clickOn(LOCATIONS);
     }
     
-    public HomePage goToHomePage() {
+
+	public HomePage goToHomePage() {
         go();
         enterUsername(this.username);
         enterPassword(this.password);
@@ -80,4 +81,32 @@ public class LoginPage extends Page {
     public Boolean hasLoginButton() {
         return hasElement(BUTTON_LOGIN);
     }
+
+	public void login(String user, String password, String location) {
+		 postLoginForm(user, password, location);
+	     return;	
+	}
+
+	private void postLoginForm(String user, String password2, String location) {
+         String postJs;
+         InputStream in = null;
+         try {
+             in = getClass().getResourceAsStream("/post.js");
+             postJs = IOUtils.toString(in);
+             in.close();
+         } catch (IOException e) {
+             throw new RuntimeException(e);
+         } finally {
+             IOUtils.closeQuietly(in);
+         }
+
+         String post = postJs + " post('" + getContextPageUrl() + "', {username: '" + user + "', password: '" + password;
+         if (location != null) {
+             post += "', sessionLocation: " + location + "});";
+         } else {
+             post += "});";
+         }
+         ((JavascriptExecutor) driver).executeScript(post);
+
+	}
 }
