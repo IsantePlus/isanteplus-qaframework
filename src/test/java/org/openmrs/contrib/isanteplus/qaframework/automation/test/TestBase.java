@@ -1,7 +1,5 @@
 package org.openmrs.contrib.isanteplus.qaframework.automation.test;
 
-import org.openmrs.contrib.isanteplus.qaframework.automation.page.Page;
-
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -9,7 +7,9 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
@@ -22,7 +22,11 @@ import org.apache.commons.vfs2.VFS;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.openmrs.contrib.isanteplus.qaframework.automation.page.Page;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -47,7 +51,11 @@ public class TestBase {
 	
 	public static final int MAX_SERVER_STARTUP_IN_MILLISECONDS = 10 * 60 * 1000;
 	
+	protected By patientHeaderId = By.cssSelector("div.identifiers span");
+	
 	private static volatile boolean serverFailure = false;
+	
+	protected String firstPatientIdentifier;
 	
 	private WebDriver driver;
 	
@@ -200,4 +208,31 @@ public class TestBase {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		return formatter.format(date);
 	}
+	
+	protected WebElement getElement(By elementBy) {
+		try {
+			return driver.findElement(elementBy);
+		} catch (NoSuchElementException e) {
+			return null;
+		}
+	}
+	protected String trimPatientId(String id) {
+		id = id.replace("Recent", "");
+		if (id.indexOf("[") > 0) {
+			id = id.split("\\[")[0];
+		}
+		if (id.indexOf(" ") > 0) {
+			id = id.split(" ")[0];
+		}
+		return id;
+	}
+	
+	protected void matchPatientIds(String patientId) {
+		List<String> ids = new ArrayList<>();
+		driver.findElements(patientHeaderId).forEach(id-> {
+			ids.add(trimPatientId(id.getText()));
+		});
+		assertTrue(ids.contains(trimPatientId(patientId)));
+	}
+	
 }
