@@ -22,7 +22,10 @@ import org.apache.commons.vfs2.VFS;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.openmrs.contrib.isanteplus.qaframework.automation.page.HomePage;
+import org.openmrs.contrib.isanteplus.qaframework.automation.page.LoginPage;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.Page;
+import org.openmrs.contrib.isanteplus.qaframework.automation.page.PatientVisitsDashboardPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -32,6 +35,10 @@ import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+
+import jakarta.ws.rs.ServerErrorException;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.core.Response;
 
 /**
  * Superclass for all UI Tests. Contains lots of handy "utilities" needed to setup and tear down
@@ -51,13 +58,25 @@ public class TestBase {
 	
 	public static final int MAX_SERVER_STARTUP_IN_MILLISECONDS = 10 * 60 * 1000;
 	
-	protected By patientHeaderId = By.cssSelector("div.identifiers span");
 	
 	private static volatile boolean serverFailure = false;
 	
-	protected String firstPatientIdentifier;
 	
 	private WebDriver driver;
+	
+	protected TestProperties testProperties = TestProperties.instance();
+	
+	protected LoginPage loginPage;
+	
+	protected String firstPatientIdentifier;
+	
+	protected HomePage homePage;
+	private static final By SELECTED_LOCATION = By.id("selected-location");
+	
+	protected PatientVisitsDashboardPage visitsDashboardPage;
+	
+	protected By patientHeaderId = By.cssSelector("div.identifiers span");
+
 	
 	protected Page page;
 	
@@ -197,18 +216,33 @@ public class TestBase {
 		assertTrue(driver.getCurrentUrl().contains(expected.getPageUrl()));
 	}
 	
-	protected void quit() {
-		if (getWebDriver() != null) {
-			getWebDriver().quit();
-		}
-	}
 	
 	public String getCurrentDate() {
 		Date date = new Date();
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		return formatter.format(date);
 	}
-	
+
+   @Before
+    public void before() {
+        homePage = new HomePage(page);
+    }
+   
+	public void Steps() {
+		try {
+			startWebDriver();
+			loginPage = getLoginPage();
+		} catch (Exception e) {
+			fail(e.getMessage());
+		}
+	}
+
+	protected void quit() {
+		if (driver != null) {
+			driver.quit();
+		}
+	}
+
 	protected WebElement getElement(By elementBy) {
 		try {
 			return driver.findElement(elementBy);
@@ -216,6 +250,45 @@ public class TestBase {
 			return null;
 		}
 	}
+
+	protected void initiateWithLogin() {
+		goToLoginPage();
+		goToLoginPage().login(testProperties.getUsername(),
+				testProperties.getPassword(), testProperties.getLocation());
+		homePage = (HomePage) new HomePage(loginPage).waitForPage();
+	}
+	
+	public String getLocationUuid(Page page) {
+        return driver.findElement(SELECTED_LOCATION).getAttribute("location-uuid");
+    }
+
+    public LoginPage goToLoginPage() {
+        LoginPage loginPage = getLoginPage();
+
+        Response response = (Response) ClientBuilder.newClient()
+                .target(TestProperties.instance().getWebAppUrl())
+                .path(loginPage.getPageUrl())
+                .request().get();
+
+        int status = ((jakarta.ws.rs.core.Response) response).getStatus();
+
+        if (status >= 400 && status <= 599) {
+            throw new ServerErrorException(((jakarta.ws.rs.core.Response) response).getStatusInfo().getReasonPhrase(), status);
+        }
+
+        loginPage.go();
+        loginPage.waitForPage();
+
+        //refresh, just to be sure all css files and images are loaded properly
+        driver.navigate().refresh();
+        loginPage.waitForPage();
+
+        return loginPage;
+    }
+
+    protected LoginPage getLoginPage() {
+        return new LoginPage(driver);
+    }
 	protected String trimPatientId(String id) {
 		id = id.replace("Recent", "");
 		if (id.indexOf("[") > 0) {
@@ -226,7 +299,7 @@ public class TestBase {
 		}
 		return id;
 	}
-	
+
 	protected void matchPatientIds(String patientId) {
 		List<String> ids = new ArrayList<>();
 		driver.findElements(patientHeaderId).forEach(id-> {
@@ -234,5 +307,6 @@ public class TestBase {
 		});
 		assertTrue(ids.contains(trimPatientId(patientId)));
 	}
-	
 }
+	
+

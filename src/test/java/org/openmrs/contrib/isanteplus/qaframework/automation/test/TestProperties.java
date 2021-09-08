@@ -20,6 +20,10 @@ public class TestProperties {
 	
 	public static final String DEFAULT_LOGIN_USERNAME = "Admin123";
 	
+	public static final String LOGIN_LOCATION_PROPERTY = "login.location";
+
+	public static final String DEFAULT_LOGIN_LOCATION = "Outpatient Clinic";
+	
 	public static final String WEBAPP_URL_PROPERTY = "webapp.url";
 	
 	public static final String DEFAULT_WEBAPP_URL = "http://isanteplusdemo.com:8080/openmrs";
@@ -68,6 +72,10 @@ public class TestProperties {
 	public String getHeadless() {
 		return getProperty(HEADLESS_PROPERTY, DEFAULT_HEADLESS);
 	}
+	
+	public String getLocation() {
+	    return getProperty(LOGIN_LOCATION_PROPERTY, DEFAULT_LOGIN_LOCATION);
+    }
 	
 	public String getBrowser() {
 		return getProperty(WEBDRIVER_PROPERTY, DEFAULT_WEBDRIVER);

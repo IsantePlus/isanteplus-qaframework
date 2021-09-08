@@ -10,6 +10,7 @@ import org.openmrs.contrib.isanteplus.qaframework.automation.test.TestBase;
 import org.openqa.selenium.By;
 
 import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -22,10 +23,10 @@ public class FindPatientSteps extends TestBase {
 	private ClinicianFacingPatientDashboardPage dashboardPage;
 	private HomePage homePage;
 	
-//	@Before(RunTest.HOOK.FINDPATIENT)
-//	public void systemLogin() {
-//		initiateWithLogin();
-//	}
+    @Before(RunTest.HOOK.FINDPATIENT)
+	public void systemLogin() {
+    	initiateWithLogin();
+	}
 
 	@After(RunTest.HOOK.FINDPATIENT)
 	public void destroy() {
