@@ -208,11 +208,6 @@ public class TestBase {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		return formatter.format(date);
 	}
-  
-	@Before
-    public void before() {
-        homePage = new HomePage(page);
-    }
 
     public String getLocationUuid(Page page) {
         return driver.findElement(SELECTED_LOCATION).getAttribute("location-uuid");

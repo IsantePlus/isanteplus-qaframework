@@ -22,7 +22,7 @@ public class Steps extends TestBase {
 	protected PatientVisitsDashboardPage visitsDashboardPage;
 	protected By patientHeaderId = By.cssSelector("div.identifiers span");
 
-	@Before
+    @Before
     public void before() {
         homePage = new HomePage(page);
     }
@@ -79,6 +79,4 @@ public class Steps extends TestBase {
 		});
 		assertTrue(ids.contains(trimPatientId(patientId)));
 	}
-
-	
 }
