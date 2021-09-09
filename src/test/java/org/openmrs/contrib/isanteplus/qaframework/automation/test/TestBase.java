@@ -22,6 +22,8 @@ import org.apache.commons.vfs2.VFS;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.openmrs.contrib.isanteplus.qaframework.automation.page.ClinicianFacingPatientDashboardPage;
+import org.openmrs.contrib.isanteplus.qaframework.automation.page.FindPatientPage;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.HomePage;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.LoginPage;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.Page;
@@ -62,7 +64,7 @@ public class TestBase {
 	private static volatile boolean serverFailure = false;
 	
 	
-	private WebDriver driver;
+	protected WebDriver driver;
 	
 	protected TestProperties testProperties = TestProperties.instance();
 	
@@ -71,7 +73,12 @@ public class TestBase {
 	protected String firstPatientIdentifier;
 	
 	protected HomePage homePage;
+	
 	private static final By SELECTED_LOCATION = By.id("selected-location");
+	
+	protected FindPatientPage findPatientPage;
+	
+	protected ClinicianFacingPatientDashboardPage dashboardPage;
 	
 	protected PatientVisitsDashboardPage visitsDashboardPage;
 	
@@ -81,6 +88,15 @@ public class TestBase {
 	protected Page page;
 	
 	
+	public WebDriver getDriver() {
+		return driver;
+	}
+
+	
+	public void setDriver(WebDriver driver) {
+		this.driver = driver;
+	}
+
 	@Before
 	public void startWebDriver() throws Exception {
 		if (serverFailure) {
@@ -230,8 +246,8 @@ public class TestBase {
 	}
 
 	protected void quit() {
-		if (driver != null) {
-			driver.quit();
+		if (getWebDriver() != null) {
+			getWebDriver().quit();
 		}
 	}
 
@@ -298,6 +314,15 @@ public class TestBase {
 			ids.add(trimPatientId(id.getText()));
 		});
 		assertTrue(ids.contains(trimPatientId(patientId)));
+	}
+	
+	protected void initiatePatientDashboard() {
+		initiateWithLogin();
+		findPatientPage = (FindPatientPage) homePage.goToFindPatientRecord()
+				.waitForPage();
+		findPatientPage.enterPatient("James Smith");
+		dashboardPage = (ClinicianFacingPatientDashboardPage) findPatientPage
+				.clickOnFirstPatient().waitForPage();
 	}
 }
 	

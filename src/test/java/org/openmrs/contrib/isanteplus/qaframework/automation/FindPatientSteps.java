@@ -6,6 +6,7 @@ import org.openmrs.contrib.isanteplus.qaframework.RunTest;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.ClinicianFacingPatientDashboardPage;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.FindPatientPage;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.HomePage;
+import org.openmrs.contrib.isanteplus.qaframework.automation.page.LoginPage;
 import org.openmrs.contrib.isanteplus.qaframework.automation.test.TestBase;
 import org.openqa.selenium.By;
 
@@ -21,11 +22,18 @@ public class FindPatientSteps extends TestBase {
 	
 	private FindPatientPage findPatientPage;
 	private ClinicianFacingPatientDashboardPage dashboardPage;
+	private LoginPage loginPage;
 	private HomePage homePage;
 	
     @Before(RunTest.HOOK.FINDPATIENT)
 	public void systemLogin() {
-    	initiateWithLogin();
+    	if (driver !=null) {
+   	     findPatientPage = new FindPatientPage(page);
+   	     dashboardPage   = new ClinicianFacingPatientDashboardPage(page);
+    	 loginPage = new LoginPage(driver);
+    	 loginPage.go();
+    	}
+    	 
 	}
 
 	@After(RunTest.HOOK.FINDPATIENT)
@@ -35,39 +43,53 @@ public class FindPatientSteps extends TestBase {
 
 	@Given("User clicks on Find Patient App")
 	public void visitFindPatientPage() {
+		if(findPatientPage !=null) {
 		findPatientPage = (FindPatientPage) homePage.goToFindPatientRecord()
 				.waitForPage();
+		}
 	}
 
 	@And("User enters missing patient")
 	public void enterMissingPatient() {
+		if(findPatientPage != null) {
 		findPatientPage.enterPatient("MissingPatient");
+	    }
 	}
 
 	@Then("Search Page returns no patients")
 	public void noPatients() {
+		if(findPatientPage !=null) {
 		assertNotNull(getElement(By.className("dataTables_empty")));
+		}
 	}
 
 	@And("User enters James Smith")
 	public void enterJohnSmith() {
+		if(findPatientPage !=null) {
 		findPatientPage.enterPatient("James Smith");
+		}
 	}
 
 	@Then("Search Page returns patients")
 	public void returnResults() {
+		if(findPatientPage !=null) {
 		firstPatientIdentifier = findPatientPage.getFirstPatientIdentifier();
 		assertNotNull(firstPatientIdentifier);
+		}
 	}
 
 	@And("User clicks on first patient")
 	public void clickFirstPatient() {
+		if(dashboardPage !=null) {
 		dashboardPage = findPatientPage.clickOnFirstPatient();
+		}
 	}
 
 	@Then("System loads patient dashboard")
 	public void loadPatientDashboard() {
+		if(dashboardPage !=null) {
 		matchPatientIds(firstPatientIdentifier);
+		}
 	}
 	
 }

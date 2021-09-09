@@ -81,10 +81,12 @@ public class LoginPage extends Page {
     public Boolean hasLoginButton() {
         return hasElement(BUTTON_LOGIN);
     }
-    public void login(String user, String password, String location) {
+    
+    public Page login(String user, String password, String location) {
 		 postLoginForm(user, password, location);
-	     return;	
+	     return this;	
 	}
+    
 
 	private void postLoginForm(String user, String password2, String location) {
         String postJs;
