@@ -19,5 +19,6 @@ public class RunTest {
                 
                 public static final String REGISTRATION = "@register";
                 public static final String FINDPATIENT = "@findPatient";
+                public static final String DELETEPATIENT = "@deletePatient";
 	}
 }

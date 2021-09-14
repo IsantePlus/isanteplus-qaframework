@@ -41,10 +41,24 @@ public class ClinicianFacingPatientDashboardPage extends Page {
 	private static final By DIAGNOSIS_HISTORY = By.id("isanteplus.diagnosis.label");
 	
 	private static final By END_VISIT = By.id("referenceapplication.realTime.endVisit");
-	
+
+	private static final By DELETE_PATIENT_REASON = By.cssSelector("#delete-reason");
+
+	private static final By DELETE_PATIENT_CONFIRM_BUTTON = By.cssSelector("#delete-patient-creation-dialog > div.dialog-content > button.confirm.right");
+
+	private static final By DELETE_PATIENT_CANCEL_BUTTON = By.cssSelector("#delete-patient-creation-dialog > div.dialog-content > button.cancel");
+
+	private static final String REASON = "patient discharged";
+
 	public ClinicianFacingPatientDashboardPage(Page parent) {
 		super(parent);
 		
+	}
+
+	public void deletePatient(String REASON){
+		clickOn(DELETE_PATIENT);
+		setText(DELETE_PATIENT_REASON, REASON);
+		clickOn(DELETE_PATIENT_CONFIRM_BUTTON);
 	}
 	
 	@Override
