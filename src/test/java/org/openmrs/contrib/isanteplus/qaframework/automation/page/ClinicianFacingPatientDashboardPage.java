@@ -48,16 +48,21 @@ public class ClinicianFacingPatientDashboardPage extends Page {
 
 	private static final By DELETE_PATIENT_CANCEL_BUTTON = By.cssSelector("#delete-patient-creation-dialog > div.dialog-content > button.cancel");
 
-	private static final String REASON = "patient discharged";
+//	private static final String REASON = "patient discharged";
 
 	public ClinicianFacingPatientDashboardPage(Page parent) {
-		super(parent);
-		
+		super(parent);	
 	}
 
-	public void deletePatient(String REASON){
+	public void deletePatient() {
 		clickOn(DELETE_PATIENT);
-		setText(DELETE_PATIENT_REASON, REASON);
+	}
+	
+    public void enterReason(String REASON) {
+    	setTextToFieldNoEnter(DELETE_PATIENT_REASON, REASON);	
+	}
+    
+    public void clickConfirmPatient() {
 		clickOn(DELETE_PATIENT_CONFIRM_BUTTON);
 	}
 	

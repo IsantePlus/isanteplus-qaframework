@@ -15,6 +15,7 @@ import io.cucumber.java.en.Then;
 
 
 
+
 public class DeletePatientSteps extends TestBase {
 	
 	private ClinicianFacingPatientDashboardPage dashboardPage;
@@ -51,11 +52,21 @@ public class DeletePatientSteps extends TestBase {
 		findPatientPage.enterPatientName(REASON);
 		findPatientPage.getFirstPatientIdentifier();
 		findPatientPage.clickOnFirstPatient();
-		dashboardPage.waitForPage();
 	}
 
-    @Then("Click ‘Effacer Patient’,Enter reason,and Click ‘Confirmer’")
-	public void userOnDeletePatient(String REASON){
-		dashboardPage.deletePatient(REASON);
+    @Then("Click 'Delete Patient'")
+	public void userClickOnDeletePatient(){
+       dashboardPage.deletePatient();
 	}
+    
+    @And("Enter reason")
+    public void enterdeleteReason(String REASON) {
+    	dashboardPage.enterReason(REASON);
+    }
+    
+    @Then("Click ‘Confirmer’")
+    public void confirmDeletingPatient() {
+    	dashboardPage.clickConfirmPatient();
+    }
+     
 }
