@@ -7,9 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
@@ -63,7 +61,7 @@ public class TestBase {
 		}
 		catch (Exception e) {
 			fail(e.getMessage());
-		}	
+		}
 	}
 	
 	@Before
@@ -198,25 +196,6 @@ public class TestBase {
 		if (getWebDriver() != null) {
 			getWebDriver().quit();
 		}
-	}
-	
-	protected String trimPatientId(String id) {
-		id = id.replace("Recent", "");
-		if (id.indexOf("[") > 0) {
-			id = id.split("\\[")[0];
-		}
-		if (id.indexOf(" ") > 0) {
-			id = id.split(" ")[0];
-		}
-		return id;
-	}
-	
-	protected void matchPatientIds(String patientId) {
-		List<String> ids = new ArrayList<>();
-		driver.findElements(patientHeaderId).forEach(id-> {
-			ids.add(trimPatientId(id.getText()));
-		});
-		assertTrue(ids.contains(trimPatientId(patientId)));
 	}
 	
 	public String getCurrentDate() {

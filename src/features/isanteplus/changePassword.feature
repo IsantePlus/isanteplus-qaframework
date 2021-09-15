@@ -9,4 +9,4 @@ Feature: Change Password
   And User clicks on modifier under user account detaials and enters username "<userName>" and privillage "<newPrivillage>"
    Examples:
     |userName |newPrivillage |
-    |admin     |Full |
+    |admin     |Full         |

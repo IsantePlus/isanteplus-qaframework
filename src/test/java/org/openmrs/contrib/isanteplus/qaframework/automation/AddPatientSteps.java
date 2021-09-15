@@ -2,11 +2,13 @@ package org.openmrs.contrib.isanteplus.qaframework.automation;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.UUID;
+
 import org.openmrs.contrib.isanteplus.qaframework.RunTest;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.HomePage;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.LoginPage;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.RegisterPatientPage;
-import org.openmrs.contrib.isanteplus.qaframework.automation.page.PatientVisitsDashboardPage;
+import org.openmrs.contrib.isanteplus.qaframework.automation.page.ClinicianFacingPatientDashboardPage;
 import org.openmrs.contrib.isanteplus.qaframework.automation.test.TestBase;
 
 import io.cucumber.java.After;
@@ -24,7 +26,7 @@ public class AddPatientSteps extends TestBase {
 	
 	private RegisterPatientPage registerPatientPage;
 	
-	private PatientVisitsDashboardPage patientVisitsDashboardPage;
+	private ClinicianFacingPatientDashboardPage patientVisitsDashboardPage;
 	
 	@After(RunTest.HOOK.REGISTRATION)
 	public void destroy() {
@@ -41,7 +43,7 @@ public class AddPatientSteps extends TestBase {
 		homePage = loginPage.goToHomePage();
 	}
 	
-	@When("User selects ‘Register Patient’ From Main Menu")
+	@When("From Main Menu, User selects 'Save Patient'")
 	public void clickRegisterPatient() {
 		registerPatientPage = homePage.clickRegisterPatientApp();
 	}
@@ -67,9 +69,14 @@ public class AddPatientSteps extends TestBase {
 		registerPatientPage.selectGender(gender);
 	}
 	
-	@And("User Enters Date of Birth for patient to be > 14 years old as {string}")
+	@And("User Enters Date of Birth for patient as {string}")
 	public void enterDateOfBirth(String age) {
 		registerPatientPage.enterDateOfBirth(age);
+	}
+	
+	@And("User Enters ST Code {string}")
+	public void enterStCode(String stCode) {
+		registerPatientPage.enterStCode(stCode);
 	}
 	
 	@And("User Enters National ID {string}")
@@ -85,11 +92,16 @@ public class AddPatientSteps extends TestBase {
 	@And("User Clicks Save")
 	public void clickSave() {
 		patientVisitsDashboardPage = registerPatientPage.savePatient();
+		if (registerPatientPage.hasValidationError()) {
+			UUID uuid = UUID.randomUUID();
+			registerPatientPage.enterStCode(uuid.toString());
+			patientVisitsDashboardPage = registerPatientPage.savePatient();
+		}
+		patientVisitsDashboardPage.waitForPage();
 	}
 	
 	@Then("‘Form Successfully Saved’ message and the newly added  patient Cover Sheet appears")
 	public void patientSaved() {
-		// assertTrue(patientVisitsDashboardPage.containsText("General Actions"));
+		assertTrue(patientVisitsDashboardPage.hasVistActionsColumn());
 	}
-	
 }

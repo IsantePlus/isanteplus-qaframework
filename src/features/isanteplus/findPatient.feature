@@ -4,13 +4,14 @@ Feature: Patient Search
     Given User logs in the system
 
   @findPatient
-  Scenario: Searching for a patient
-  And From the home page click ‘rechercher dossier de patient
-  And  Enter First Name or Last Name in “Patient Search” box "<searchText>" searchText
-  Then Identify patient in list
-  And  Click row with the patient you are searching for
-  Then Selected patient’s “Cover Page” will be displayed
+  Scenario: Searching for a patient Using Name and ST code
+  And From the home page, User clicks 'search patient record' 
+  And User Enters search Text "<searchText>" in 'Patient Search' box
+  Then User Identifies patient in list
+  When User Clicks row with the patient being searching for
+  Then Selected patient’s 'Cover Page' will be displayed for the searchType "<searchType>"
    Examples:
-      | searchText  | 
-      | moses mutesa     | 
+      | searchText  |searchType |
+      | moses mutesa| Names     |
+      | STCODE1     | ST Code   |
  

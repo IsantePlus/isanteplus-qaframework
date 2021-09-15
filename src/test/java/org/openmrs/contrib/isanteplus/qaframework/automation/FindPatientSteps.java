@@ -1,6 +1,8 @@
 package org.openmrs.contrib.isanteplus.qaframework.automation;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.openmrs.contrib.isanteplus.qaframework.RunTest;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.ClinicianFacingPatientDashboardPage;
@@ -14,18 +16,21 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 public class FindPatientSteps extends TestBase {
 	
-	private ClinicianFacingPatientDashboardPage dashbaordPage;
+	private ClinicianFacingPatientDashboardPage clinicianFacingPatientDashboardPage;
 	
-	private  FindPatientPage findPatientPage;
+	private FindPatientPage findPatientPage;
 	
 	private LoginPage loginPage;
 	
 	private HomePage homePage;
 	
-	protected String firstPatientIdentifier;
+	String patientName;
+	
+	String patientIdetifier;
 	
 	@Before(RunTest.HOOK.FINDPATIENT)
 	public void setUp() {
@@ -36,35 +41,43 @@ public class FindPatientSteps extends TestBase {
 	public void destroy() {
 		quit();
 	}
-
+	
 	@Given("User logs in the system")
 	public void userVisitLoginPage() throws Exception {
 		homePage = loginPage.goToHomePage();
-    }
+	}
 	
-	@And("From the home page click ‘rechercher dossier de patient")
+	@And("From the home page, User clicks 'search patient record'")
 	public void clickOnSearchPatientRecord() {
 		findPatientPage = homePage.clickOnSearchPatientRecord();
 	}
 	
-	@And("Enter First Name or Last Name in “Patient Search” box {string} searchText")
+	@And("User Enters search Text {string} in 'Patient Search' box")
 	public void enterPatientName(String searchText) {
-		findPatientPage.enterPatientName(searchText);
+		findPatientPage.enterSearchText(searchText);
 	}
 	
-	@Then("Identify patient in list")
-	public void returnResults() {
-		firstPatientIdentifier = findPatientPage.getFirstPatientIdentifier();
-		assertNotNull(firstPatientIdentifier);
+	@Then("User Identifies patient in list")
+	public void returnResults() throws InterruptedException {
+		Thread.sleep(1000);
+		assertNotNull(findPatientPage.getFirstPatientIdentifier());
+		patientIdetifier = findPatientPage.getFirstPatientIdentifier().trim();
+		assertNotNull(findPatientPage.getFirstPatientName());
+		patientName = findPatientPage.getFirstPatientName().trim();
 	}
-
-	@And("Click row with the patient you are searching for")
+	
+	@When("User Clicks row with the patient being searching for")
 	public void clickFirstPatient() {
-		findPatientPage.clickOnFirstPatient();
+		clinicianFacingPatientDashboardPage = findPatientPage.clickOnFirstPatient();
+		clinicianFacingPatientDashboardPage.waitForPage();
 	}
 	
-	@Then("Selected patient’s “Cover Page” will be displayed")
-	public void loadPatientSelectedCoverPage() {
-		matchPatientIds(firstPatientIdentifier);
+	@Then("Selected patient’s 'Cover Page' will be displayed for the searchType {string}")
+	public void loadPatientSelectedCoverPage(String searchType) {
+		if (searchType.trim().equals("Names")) {
+			assertTrue(clinicianFacingPatientDashboardPage.patientIdsMatch(patientIdetifier));
+		} else if (searchType.trim().equals("ST Code")) {
+			assertEquals(clinicianFacingPatientDashboardPage.getPatientNames().trim(), patientName);
+		}
 	}
 }
