@@ -8,8 +8,6 @@ Feature: Delete Patient
   And  User clicks on search Patient Record app
   And  Search for a patient "<patientName>" patientName and load their cover page
   Then Click 'Delete Patient'
-  And  Enter reason
-  Then Click ‘Confirmer’
    Examples:
       | patientName  | REASON |
       | moses mutesa | patient discharged|

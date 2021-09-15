@@ -23,6 +23,8 @@ public class DeletePatientSteps extends TestBase {
 	
 	private HomePage homePage;
 	
+	private static String REASON = "patient discharged";
+	
 	@Before(RunTest.HOOK.DELETEPATIENT)
 	public void setUp() {
 		loginPage = new LoginPage(getWebDriver());
@@ -52,17 +54,6 @@ public class DeletePatientSteps extends TestBase {
 	
 	@Then("Click 'Delete Patient'")
 	public void userClickOnDeletePatient() {
-		dashboardPage.deletePatient();
+		dashboardPage = findPatientPage.clickOnDeletePatient();
 	}
-	
-	@And("Enter reason")
-	public void enterdeleteReason(String REASON) {
-		dashboardPage.enterReason(REASON);
-	}
-	
-	@Then("Click ‘Confirmer’")
-	public void confirmDeletingPatient() {
-		dashboardPage.clickConfirmPatient();
-	}
-	
 }

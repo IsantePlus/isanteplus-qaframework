@@ -56,18 +56,6 @@ public class ClinicianFacingPatientDashboardPage extends Page {
 		super(parent);
 	}
 	
-	public void deletePatient() {
-		clickOn(DELETE_PATIENT);
-	}
-	
-	public void enterReason(String REASON) {
-		setTextToFieldNoEnter(DELETE_PATIENT_REASON, REASON);
-	}
-	
-	public void clickConfirmPatient() {
-		clickOn(DELETE_PATIENT_CONFIRM_BUTTON);
-	}
-	
 	@Override
 	public String getPageUrl() {
 		
