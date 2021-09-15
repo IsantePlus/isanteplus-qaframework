@@ -13,20 +13,16 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
-
-
-
 public class DeletePatientSteps extends TestBase {
 	
 	private ClinicianFacingPatientDashboardPage dashboardPage;
 	
-	private  FindPatientPage findPatientPage;
+	private FindPatientPage findPatientPage;
 	
 	private LoginPage loginPage;
 	
 	private HomePage homePage;
 	
-
 	@Before(RunTest.HOOK.DELETEPATIENT)
 	public void setUp() {
 		loginPage = new LoginPage(getWebDriver());
@@ -40,12 +36,12 @@ public class DeletePatientSteps extends TestBase {
 	@Given("setup logs in the system")
 	public void setupLoginPage() throws Exception {
 		homePage = loginPage.goToHomePage();
-    }
+	}
 	
 	@Then("User clicks on search Patient Record app")
 	public void userVisitFindPatientRecordApp() throws Exception {
 		findPatientPage = homePage.clickOnSearchPatientRecord();
-    }
+	}
 	
 	@And("Search for a patient {string} patientName and load their cover page")
 	public void userSearchForPatient(String REASON) {
@@ -53,20 +49,20 @@ public class DeletePatientSteps extends TestBase {
 		findPatientPage.getFirstPatientIdentifier();
 		findPatientPage.clickOnFirstPatient();
 	}
-
-    @Then("Click 'Delete Patient'")
-	public void userClickOnDeletePatient(){
-       dashboardPage.deletePatient();
+	
+	@Then("Click 'Delete Patient'")
+	public void userClickOnDeletePatient() {
+		dashboardPage.deletePatient();
 	}
-    
-    @And("Enter reason")
-    public void enterdeleteReason(String REASON) {
-    	dashboardPage.enterReason(REASON);
-    }
-    
-    @Then("Click ‘Confirmer’")
-    public void confirmDeletingPatient() {
-    	dashboardPage.clickConfirmPatient();
-    }
-     
+	
+	@And("Enter reason")
+	public void enterdeleteReason(String REASON) {
+		dashboardPage.enterReason(REASON);
+	}
+	
+	@Then("Click ‘Confirmer’")
+	public void confirmDeletingPatient() {
+		dashboardPage.clickConfirmPatient();
+	}
+	
 }
