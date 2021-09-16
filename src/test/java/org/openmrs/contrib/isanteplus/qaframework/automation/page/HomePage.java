@@ -84,6 +84,13 @@ public class HomePage extends Page {
 		return new FindPatientPage(this);
 	}
 	
+	public DataManagementPage clickOnDataManagementPage() {
+		clickOn(DATA_MANAGEMENT);
+		return new DataManagementPage(this);
+		
+		
+	}
+		
 	public SystemAdministrationPage clickSystemAdministrationApp() {
 		clickOn(APP_SYSTEM_ADMIN);
 		return new SystemAdministrationPage(this);

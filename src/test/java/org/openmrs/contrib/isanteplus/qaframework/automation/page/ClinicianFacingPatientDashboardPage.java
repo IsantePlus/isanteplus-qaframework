@@ -1,9 +1,5 @@
 package org.openmrs.contrib.isanteplus.qaframework.automation.page;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import org.openqa.selenium.By;
 
 public class ClinicianFacingPatientDashboardPage extends Page {
