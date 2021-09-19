@@ -198,6 +198,11 @@ public class TestBase {
 		}
 	}
 	
+	protected boolean textExists(String text) {
+		return driver.findElements(
+				By.xpath("//*[contains(text(),'" + text + "')]")).size() > 0;
+	}
+	
 	public String getCurrentDate() {
 		Date date = new Date();
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");

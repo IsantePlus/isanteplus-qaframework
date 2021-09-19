@@ -11,9 +11,10 @@ Then User enter "<firstPatientId>" first patient id
 And  User enter "<secondPatientId>" second patient id
 Then User clicks on continue
 And  User select the preferred record
-Then User Click ‘Yes, continue’
+And  User Click ‘Yes, continue’
+Then Patient’s cover page with the data for the selected record is loaded
  Examples:
       | firstPatientId |secondPatientId |
-      | 1008UY         | 1008LC         |
+      | 10020V       |  1001GV      |
       
  

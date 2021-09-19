@@ -87,8 +87,6 @@ public class HomePage extends Page {
 	public DataManagementPage clickOnDataManagementPage() {
 		clickOn(DATA_MANAGEMENT);
 		return new DataManagementPage(this);
-		
-		
 	}
 		
 	public SystemAdministrationPage clickSystemAdministrationApp() {

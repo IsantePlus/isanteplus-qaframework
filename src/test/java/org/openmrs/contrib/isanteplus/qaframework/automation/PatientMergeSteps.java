@@ -1,5 +1,7 @@
 package org.openmrs.contrib.isanteplus.qaframework.automation;
 
+import static org.junit.Assert.assertTrue;
+
 import org.openmrs.contrib.isanteplus.qaframework.RunTest;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.ClinicianFacingPatientDashboardPage;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.DataManagementPage;
@@ -23,9 +25,9 @@ public class PatientMergeSteps extends TestBase {
 	
 	private DataManagementPage dataManagementPage;
 	
-	private ClinicianFacingPatientDashboardPage dashboardPage ;
-	
 	private MergePatientPage mergePatientsPage;
+	
+	private ClinicianFacingPatientDashboardPage dashboardPage;
 	
 	@Before(RunTest.HOOK.PATIENT_MERGE)
 	public void setUp() {
@@ -73,9 +75,15 @@ public class PatientMergeSteps extends TestBase {
 		mergePatientsPage.clickOnMergePatient();
 	}
 	
-	@Then("User Click ‘Yes, continue’")
-	public void ClickOnContinueButton() {
-		mergePatientsPage.clickOnContinue();
+	@And("User Click ‘Yes, continue’")
+	public void clickOnContinueButton() {
+		dashboardPage = mergePatientsPage.clickOnContinue();
+		mergePatientsPage.waitForPage();
+	}
+	
+	@Then("Patient’s cover page with the data for the selected record is loaded")
+	public void loadPatientDashboardPage() {
+		assertTrue(dashboardPage.hasVistActionsColumn());
 	}
 	
 }

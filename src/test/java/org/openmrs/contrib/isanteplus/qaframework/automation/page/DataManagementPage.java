@@ -35,10 +35,10 @@ public class DataManagementPage extends Page {
 		setText(PATIENT_ID_2, patient2);
 	}
 	
-	public PatientVisitsDashboardPage clickOnContinue() {
+	public ClinicianFacingPatientDashboardPage clickOnContinue() {
 		waitForElementToBeEnabled(CONFIRM_BUTTON);
 		clickOn(CONFIRM_BUTTON);
-		return new PatientVisitsDashboardPage(this);
+		return new ClinicianFacingPatientDashboardPage(this);
 	}
 	
 	public void clickOnMergePatient() {
