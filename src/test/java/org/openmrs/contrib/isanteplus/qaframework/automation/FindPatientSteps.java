@@ -10,6 +10,7 @@ import org.openmrs.contrib.isanteplus.qaframework.automation.page.FindPatientPag
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.HomePage;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.LoginPage;
 import org.openmrs.contrib.isanteplus.qaframework.automation.test.TestBase;
+import org.openmrs.contrib.isanteplus.qaframework.automation.test.TestData;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -26,6 +27,8 @@ public class FindPatientSteps extends TestBase {
 	
 	private LoginPage loginPage;
 	
+	private TestData.PatientInfo testPatient;
+	
 	private HomePage homePage;
 	
 	String patientName;
@@ -34,6 +37,7 @@ public class FindPatientSteps extends TestBase {
 	
 	@Before(RunTest.HOOK.FINDPATIENT)
 	public void setUp() {
+		testPatient = new TestData.PatientInfo();
 		loginPage = new LoginPage(getWebDriver());
 	}
 	
@@ -54,7 +58,7 @@ public class FindPatientSteps extends TestBase {
 	
 	@And("User Enters search Text {string} in 'Patient Search' box")
 	public void enterPatientName(String searchText) {
-		findPatientPage.enterSearchText(searchText);
+		findPatientPage.enterSearchText(testPatient.identifier);
 	}
 	
 	@Then("User Identifies patient in list")
