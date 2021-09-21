@@ -41,6 +41,7 @@ public class PatientMergeSteps extends TestBase {
 	
 	@Given("User log into the system")
 	public void userVisitLoginPage() throws Exception {
+		System.out.println(".... Patient Merge......");
 		homePage = loginPage.goToHomePage();
 	}
 	
@@ -78,12 +79,11 @@ public class PatientMergeSteps extends TestBase {
 	@And("User Click ‘Yes, continue’")
 	public void clickOnContinueButton() {
 		dashboardPage = mergePatientsPage.clickOnContinue();
-		mergePatientsPage.waitForPage();
 	}
 	
 	@Then("Patient’s cover page with the data for the selected record is loaded")
 	public void loadPatientDashboardPage() {
-		assertTrue(dashboardPage.hasVistActionsColumn());
+		assertTrue(dashboardPage.containsText("visits"));
 	}
 	
 }
