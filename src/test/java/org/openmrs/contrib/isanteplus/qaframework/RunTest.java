@@ -25,5 +25,7 @@ public class RunTest {
 		public static final String PASSWORD = "@password";
 		
 		public static final String PATIENT_MERGE = "@patientMerge";
+		
+		public static final String PATIENT_SUMMARY = "@patientSummary";
 	}
 }
