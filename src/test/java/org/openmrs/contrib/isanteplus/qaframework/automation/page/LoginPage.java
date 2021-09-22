@@ -48,11 +48,11 @@ public class LoginPage extends Page {
 	}
 	
 	public void enterUsername(String username) {
-		setText(FIELD_USERNAME, username);
+		setTextToFieldNoEnter(FIELD_USERNAME, username);
 	}
 	
 	public void enterPassword(String password) {
-		setText(FIELD_PASSWORD, password);
+		setTextToFieldNoEnter(FIELD_PASSWORD, password);
 	}
 	
 	public void clickLoginButton() {
@@ -67,6 +67,15 @@ public class LoginPage extends Page {
 		go();
 		enterUsername(this.username);
 		enterPassword(this.password);
+		selectLocation();
+		clickLoginButton();
+		return new HomePage(this);
+	}
+
+	public HomePage goToHomePage(String userName ,String password) {
+		go();
+		enterUsername(userName);
+		enterPassword(password);
 		selectLocation();
 		clickLoginButton();
 		return new HomePage(this);

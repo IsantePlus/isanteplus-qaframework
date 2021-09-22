@@ -16,14 +16,16 @@ public class HomePage extends Page {
 	private final By LINK_LOGOUT = By.className("logout");
 	
 	private final String PATH_HOME_RESET = "referenceapplication/home.page?noredirect=true";
+
+	private static final By BUTTON_LOGOUT = By.xpath("//i[@class='icon-signout small']");
 	
-	private final By FIELD_OLD_PASSWORD = By.id("oldPassword");
+	private final By FIELD_OLD_PASSWORD = By.xpath("//input[@id='oldPassword-field']");
 	
-	private final By FIELD_NEW_PASSWORD = By.id("newPassword");
+	private final By FIELD_NEW_PASSWORD = By.xpath("//input[@id='newPassword-field']");
 	
-	private final By FIELD_CONFIRM_PASSWORD = By.id("newPassword");
+	private final By FIELD_CONFIRM_PASSWORD =  By.xpath("//input[@id='confirmPassword-field']");
 	
-	private static final By SAVE_BUTTON = By.id("save");
+	private static final By SAVE_BUTTON = By.id("save-button");
 	
 	private final String PATH_HOME = "/referenceapplication/home.page";
 	
@@ -69,6 +71,10 @@ public class HomePage extends Page {
 	public Boolean hasLogOutLink() {
 		return hasElement(LINK_LOGOUT);
 	}
+
+	public void clickLogoutt() {
+		clickOn(BUTTON_LOGOUT);
+	}
 	
 	public void clickLogout() {
 		clickOn(LINK_LOGOUT);
@@ -97,8 +103,8 @@ public class HomePage extends Page {
 		setText(FIELD_NEW_PASSWORD, newPassword);
 	}
 	
-	public void confirmNewPassword(String newPassword) {
-		setText(FIELD_CONFIRM_PASSWORD, newPassword);
+	public void confirmNewPassword(String confirmPassword) {
+		setText(FIELD_CONFIRM_PASSWORD, confirmPassword);
 	}
 	
 	public String savePassword() {

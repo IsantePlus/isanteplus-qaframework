@@ -23,5 +23,7 @@ public class RunTest {
 		public static final String FINDPATIENT = "@findPatient";
 		
 		public static final String PASSWORD = "@password";
+		
+		public static final String DELETEPATIENT = "@deletePatient";
 	}
 }
