@@ -6,7 +6,9 @@ public class ClinicianFacingPatientDashboardPage extends Page {
 	
 	public static final String URL_PATH = "/coreapps/clinicianfacing/patient.page";
 	
-	private static final By START_VISIT = By.id("org.openmrs.module.coreapps.createVisit");
+	private static final By START_CONSULTATION = By.cssSelector("#content > div.container > div > div.action-container.column > div > ul > h3");
+	
+	private static final By START_CONFIRM_BUTTON = By.cssSelector("#start-visit-with-visittype-confirm > font > font");
 	
 	private static final By SHOW_CONTACT_INFO = By.id("patient-header-contactInfo");
 	
@@ -51,6 +53,19 @@ public class ClinicianFacingPatientDashboardPage extends Page {
 	public ClinicianFacingPatientDashboardPage(Page parent) {
 		super(parent);
 	}
+	
+	
+	public ConsultationPage  ClickOnStartConsultation() {
+		clickOn(START_CONSULTATION);
+        return new ConsultationPage(this);	
+	}
+	
+	public ConsultationPage clickOnConfirmButton() {
+		waitForElement(START_CONFIRM_BUTTON);
+        clickOn(START_CONFIRM_BUTTON);
+		return new ConsultationPage(this);
+	}
+	
 	
 	@Override
 	public String getPageUrl() {

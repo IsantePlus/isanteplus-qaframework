@@ -24,6 +24,8 @@ public class FindPatientPage extends Page {
 	
 	private static final By DELETE_PATIENT = By.id("org.openmrs.module.coreapps.deletePatient");
 	
+	private static final By FIRST_PATIENT = By.cssSelector("#patient-search-results-table > tbody > tr:nth-child(1) > td:nth-child(3)");
+	
 	private static String REASON = "patient discharged";
 	
 	public FindPatientPage(Page page) {
@@ -60,6 +62,11 @@ public class FindPatientPage extends Page {
 	
 	public Boolean hasSearchPatientRecord() {
 		return hasElement(PATIENT_SEARCH);
+	}
+	
+	public ClinicianFacingPatientDashboardPage ClinicianFacingPatientDashboardPage() {
+		clickOn(FIRST_PATIENT);
+		return new ClinicianFacingPatientDashboardPage(this) ;
 	}
 	
 	@Override
