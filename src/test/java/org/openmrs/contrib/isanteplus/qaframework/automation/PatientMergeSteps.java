@@ -41,7 +41,7 @@ public class PatientMergeSteps extends TestBase {
 	
 	@Given("User log into the system")
 	public void userVisitLoginPage() throws Exception {
-		System.out.println(".... Patient Merge......");
+		System.out.println(".... Patient Merge.......");
 		homePage = loginPage.goToHomePage();
 	}
 	
