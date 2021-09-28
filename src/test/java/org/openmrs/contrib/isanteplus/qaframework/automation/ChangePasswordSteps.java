@@ -1,7 +1,5 @@
 package org.openmrs.contrib.isanteplus.qaframework.automation;
 
-import static org.junit.Assert.assertTrue;
-
 import org.openmrs.contrib.isanteplus.qaframework.RunTest;
 import org.openmrs.contrib.isanteplus.qaframework.automation.test.TestBase;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.AccountsPage;
@@ -33,6 +31,7 @@ public class ChangePasswordSteps extends TestBase {
 	
 	@Before(RunTest.HOOK.PASSWORD)
 	public void setLoginPage() {
+		System.out.println(".... Change Password......");
 		loginPage = new LoginPage(getWebDriver());
 	}
 	
@@ -65,7 +64,43 @@ public class ChangePasswordSteps extends TestBase {
 	
 	@And("User checks force password")
 	public void enableForcedPassword() {
-		accountsPage.forcePasswordIsChecked();
+		accountsPage.checkForcePassword();
+		accountsPage.checkHasSuperPriviledges();
+	}
+	
+	@And("User clicks save")
+	public void saveRoles() throws InterruptedException {
+		Thread.sleep(5000);
+		accountsPage.saveRoles();
+		Thread.sleep(5000);
+	}
+	
+	@And("User logs out")
+	public void visitLoginPageAgain() throws Exception {
+		Thread.sleep(5000);
+		accountsPage.clickLogoutButton();
+		Thread.sleep(5000);
+	}
+	
+	@And("User logs in the application with the account {string} we are changing the password {string}")
+	public void visitReLoginPageAgain(String username, String password) throws Exception {
+		loginPage.go();
+		homePage = loginPage.goToHomePage(username, password);
+	}
+	
+	@And("User enters old password {string}")
+	public void enterOldPassword(String oldPassword) throws Exception {
+		homePage.enterOldPassword(oldPassword);
+	}
+	
+	@And("User enters new password {string}")
+	public void enterNewPassword(String newPassword) throws Exception {
+		homePage.enterNewPassword(newPassword);
+	}
+	
+	@And("User re-enters new password {string}")
+	public void enterNewPasswordAgain(String confirmPassword) throws Exception {
+		homePage.confirmNewPassword(confirmPassword);
 	}
 	
 }

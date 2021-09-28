@@ -44,6 +44,7 @@ public class FindPatientSteps extends TestBase {
 	
 	@Given("User logs in the system")
 	public void userVisitLoginPage() throws Exception {
+		System.out.println(".... Patient Search......");
 		homePage = loginPage.goToHomePage();
 	}
 	

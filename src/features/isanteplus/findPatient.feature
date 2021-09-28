@@ -11,7 +11,7 @@ Feature: Patient Search
   When User Clicks row with the patient being searching for
   Then Selected patient’s 'Cover Page' will be displayed for the searchType "<searchType>"
    Examples:
-      | searchText  |searchType |
-      | moses mutesa| Names     |
-      | STCODE1     | ST Code   |
+      | searchText    |searchType |
+      | moses2 mutesa2| Names     |
+      | STCODE2       | ST Code   |
  

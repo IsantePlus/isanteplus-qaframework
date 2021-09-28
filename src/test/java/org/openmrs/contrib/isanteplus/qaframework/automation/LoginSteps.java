@@ -27,6 +27,7 @@ public class LoginSteps extends TestBase {
 	
 	@Before(RunTest.HOOK.LOGIN)
 	public void setLoginPage() {
+		System.out.println(".... User Login......");
 		loginPage = new LoginPage(getWebDriver());
 	}
 	

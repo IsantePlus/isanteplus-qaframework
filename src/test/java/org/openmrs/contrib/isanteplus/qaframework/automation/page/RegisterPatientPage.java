@@ -63,7 +63,7 @@ public class RegisterPatientPage extends Page {
 	
 	private static final By COUNTRY_OPTION = By.xpath("//a[starts-with(@id, 'ui-id')]");
 	
-	private static final By VALIDATION_ERROR = By.id("validation-errors-content");
+	private static final By VALIDATION_ERROR = By.xpath("//*[@id='validation-errors-content']/ul/li");
 	
 	public RegisterPatientPage(Page parent) {
 		super(parent);
@@ -91,7 +91,7 @@ public class RegisterPatientPage extends Page {
 	
 	public void selectGender(String gender) {
 		clickOn(LABEL_GENDER);
-		//selectFrom(DROP_DOWN_GENDER, gender);
+		// selectFrom(DROP_DOWN_GENDER, gender);
 		selectOptionFromDropDown(DROP_DOWN_GENDER);
 	}
 	
@@ -122,5 +122,9 @@ public class RegisterPatientPage extends Page {
 	
 	public Boolean hasValidationError() {
 		return hasElementWithoutWait(VALIDATION_ERROR);
+	}
+	
+	public String getValidationError() {
+		return getText(VALIDATION_ERROR);
 	}
 }

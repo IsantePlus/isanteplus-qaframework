@@ -17,13 +17,13 @@ public class HomePage extends Page {
 	
 	private final String PATH_HOME_RESET = "referenceapplication/home.page?noredirect=true";
 	
-	private final By FIELD_OLD_PASSWORD = By.id("oldPassword");
+	private final By FIELD_OLD_PASSWORD = By.xpath("//input[@id='oldPassword-field']");
 	
-	private final By FIELD_NEW_PASSWORD = By.id("newPassword");
+	private final By FIELD_NEW_PASSWORD = By.xpath("//input[@id='newPassword-field']");
 	
-	private final By FIELD_CONFIRM_PASSWORD = By.id("newPassword");
+	private final By FIELD_CONFIRM_PASSWORD = By.xpath("//input[@id='confirmPassword-field']");
 	
-	private static final By SAVE_BUTTON = By.id("save");
+	private static final By SAVE_BUTTON = By.id("save-button");
 	
 	private final String PATH_HOME = "/referenceapplication/home.page";
 	
@@ -71,7 +71,8 @@ public class HomePage extends Page {
 	}
 	
 	public void clickLogout() {
-		clickOn(LINK_LOGOUT);
+		goToPage("appui/header/logout.action?successUrl=openmrs");
+		//clickOn(LINK_LOGOUT);
 	}
 	
 	public RegisterPatientPage clickRegisterPatientApp() {
@@ -102,8 +103,8 @@ public class HomePage extends Page {
 		setText(FIELD_NEW_PASSWORD, newPassword);
 	}
 	
-	public void confirmNewPassword(String newPassword) {
-		setText(FIELD_CONFIRM_PASSWORD, newPassword);
+	public void confirmNewPassword(String confirmPassword) {
+		setText(FIELD_CONFIRM_PASSWORD, confirmPassword);
 	}
 	
 	public String savePassword() {

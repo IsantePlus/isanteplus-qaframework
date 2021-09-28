@@ -25,5 +25,12 @@ public class RunTest {
 		public static final String PASSWORD = "@password";
 		
 		public static final String PATIENT_MERGE = "@patientMerge";
+
+		public static final String DELETEPATIENT = "@deletePatient";
+
+		public static final String USERMANAGEMENT = "@userManagement";
+
+		public static final String CONSULTATION = "@consultation";
+
 	}
 }
