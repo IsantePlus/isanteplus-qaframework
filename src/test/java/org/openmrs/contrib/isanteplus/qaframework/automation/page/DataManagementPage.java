@@ -1,6 +1,7 @@
 package org.openmrs.contrib.isanteplus.qaframework.automation.page;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class DataManagementPage extends Page {
 	
@@ -37,11 +38,13 @@ public class DataManagementPage extends Page {
 	
 	public ClinicianFacingPatientDashboardPage clickOnContinue() {
 		waitForElementToBeEnabled(CONFIRM_BUTTON);
+		ExpectedConditions.elementToBeClickable(CONFIRM_BUTTON);
 		clickOn(CONFIRM_BUTTON);
 		return new ClinicianFacingPatientDashboardPage(this);
 	}
 	
 	public void clickOnMergePatient() {
+		ExpectedConditions.elementToBeClickable(YES_CONTINUE);
 		waitForElement(YES_CONTINUE);
 		clickOn(YES_CONTINUE);
 	}
@@ -51,6 +54,7 @@ public class DataManagementPage extends Page {
 	}
 	
 	public void waitCount() {
+		ExpectedConditions.elementToBeClickable(CONFIRM_BUTTON);
 		clickOn(CONFIRM_BUTTON);
 	}
 	

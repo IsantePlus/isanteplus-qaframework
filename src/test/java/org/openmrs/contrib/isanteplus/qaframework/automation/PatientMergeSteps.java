@@ -68,17 +68,20 @@ public class PatientMergeSteps extends TestBase {
 	
 	@Then("User clicks on continue")
 	public void clickOnContinue() throws InterruptedException {
-		dataManagementPage.clickOnContinue();	
+		dataManagementPage.clickOnContinue();
+		dataManagementPage.waitForPageToLoad();
 	}
 	
 	@And("User select the preferred record")
 	public void clickOnMergePatient() {
 		mergePatientsPage.clickOnMergePatient();
+		mergePatientsPage.waitForPageToLoad();
 	}
 	
 	@And("User Click ‘Yes, continue’")
 	public void clickOnContinueButton() {
 		dashboardPage = mergePatientsPage.clickOnContinue();
+		dashboardPage.waitForPageToLoad();
 	}
 	
 	@Then("Patient’s cover page with the data for the selected record is loaded")
