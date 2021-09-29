@@ -73,4 +73,20 @@ public class ConsultationSteps extends TestBase {
         assertTrue(patientDashBoardPage.containsText("Historique des formulaires (Formulaires remplis précédemment)"));
         assertTrue(patientDashBoardPage.containsText("Formulaires"));
     }
+
+    @And("Click “Ajouter consultation antérieure” under “Actions générales” menu on the right")
+    public void clickAddPreviousConsultation() throws Exception {
+        clinicianFacingPatientDashboardPage.clickAddPreviousConsultation();
+    }
+
+    @And("On the Ajouter consultation antérieure pop up enter the Date de début and the Date de fin")
+    public void enterDates() throws Exception {
+        clinicianFacingPatientDashboardPage.selectDatesForPreviousConsultation();
+    }
+
+    @And("Click Confirm")
+    public void clickConfirm() throws Exception {
+        patientDashBoardPage = clinicianFacingPatientDashboardPage.clickConfirmPreviousConsultation();
+        Thread.sleep(5000);
+    }
 }

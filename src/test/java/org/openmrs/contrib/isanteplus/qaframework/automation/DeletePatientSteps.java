@@ -28,12 +28,12 @@ public class DeletePatientSteps extends TestBase {
 	
 	private static String REASON = "patient discharged";
 	
-	@Before(RunTest.HOOK.DELETEPATIENT)
+	@Before(RunTest.HOOK.DELETE_PATIENT)
 	public void setUp() {
 		loginPage = new LoginPage(getWebDriver());
 	}
 	
-	@After(RunTest.HOOK.DELETEPATIENT)
+	@After(RunTest.HOOK.DELETE_PATIENT)
 	public void destroy() {
 		quit();
 	}

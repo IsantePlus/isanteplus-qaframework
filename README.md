@@ -39,8 +39,10 @@ This is the Isanteplus Automated testing Framework thats integrates both BDD wit
 | Changing Password   | @password      |
 | delete patient      | @deletepatient |
 | user management     | @userManagement|
+| Patient summary     | @patientSummary|
 | consultation        | @consultation  |
 | Patient Merge       | @patientMerge  |
+| Patient Coversheet  | @patientCoverSheet|
 
 
 

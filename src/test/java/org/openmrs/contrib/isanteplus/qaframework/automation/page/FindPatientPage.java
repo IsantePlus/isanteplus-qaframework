@@ -26,6 +26,8 @@ public class FindPatientPage extends Page {
 	
 	private static String REASON = "patient discharged";
 	
+	private static final By FIRST_PATIENT = By.cssSelector("#patient-search-results-table > tbody > tr:nth-child(1) > td:nth-child(3)");
+	
 	public FindPatientPage(Page page) {
 		super(page);
 	}
@@ -61,7 +63,12 @@ public class FindPatientPage extends Page {
 	public Boolean hasSearchPatientRecord() {
 		return hasElement(PATIENT_SEARCH);
 	}
-	
+		
+	public ClinicianFacingPatientDashboardPage ClinicianFacingPatientDashboardPage() {
+		clickOn(FIRST_PATIENT);
+		return new ClinicianFacingPatientDashboardPage(this) ;
+	}
+
 	@Override
 	public String getPageUrl() {
 		return PAGE_URL;

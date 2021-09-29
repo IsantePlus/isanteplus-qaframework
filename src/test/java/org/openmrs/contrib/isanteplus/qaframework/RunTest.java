@@ -20,7 +20,7 @@ public class RunTest {
 		
 		public static final String REGISTRATION = "@register";
 		
-		public static final String FINDPATIENT = "@findPatient";
+		public static final String FIND_PATIENT = "@findPatient";
 		
 		public static final String PASSWORD = "@password";
 		
@@ -28,7 +28,17 @@ public class RunTest {
 
 		public static final String DELETEPATIENT = "@deletePatient";
 
-		public static final String USERMANAGEMENT = "@userManagement";
+		public static final String DELETE_PATIENT = "@deletePatient";
+
+		public static final String ADD_USER = "@addUser";
+		
+		public static final String SEARCH_USER = "@searchUser";
+		
+		public static final String PATIENT_COVER_SHEET = "@patientCoverSheet";
+
+		public static final String USER_MANAGEMENT = "@userManagement";
+
+		public static final String PATIENT_SUMMARY = "@patientSummary";
 
 		public static final String CONSULTATION = "@consultation";
 
