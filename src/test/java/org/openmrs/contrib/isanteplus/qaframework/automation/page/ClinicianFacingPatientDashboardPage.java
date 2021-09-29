@@ -18,7 +18,6 @@ public class ClinicianFacingPatientDashboardPage extends Page {
 
 	private static final By CONFIRM = By.xpath("/html/body/div[5]/div/div/div[2]/button[1]");
 
-
 	private static final By EDIT_PATIENT = By.cssSelector("#edit-patient-demographics a");
 	
 	private static final By RECENT_VISITS = By.cssSelector("visitbyencountertype > ul > li:nth-child(1) > a");
@@ -59,18 +58,19 @@ public class ClinicianFacingPatientDashboardPage extends Page {
 		super(parent);
 	}
 	
-	
-	public ConsultationPage  ClickOnStartConsultation() {
+	public void ClickOnStartConsultation() {
 		clickOn(START_CONSULTATION);
-        return new ConsultationPage(this);	
 	}
 	
 	public ConsultationPage clickOnConfirmButton() {
 		waitForElement(START_CONFIRM_BUTTON);
-        clickOn(START_CONFIRM_BUTTON);
+		clickOn(START_CONFIRM_BUTTON);
 		return new ConsultationPage(this);
 	}
 	
+	public void clickOnRecentVisit() {
+		clickOn(RECENT_VISITS);
+	}
 	
 	@Override
 	public String getPageUrl() {
@@ -87,7 +87,7 @@ public class ClinicianFacingPatientDashboardPage extends Page {
 
 	public PatientDashBoardPage clickConfirm() {
 		clickOn(CONFIRM);
-		 return new PatientDashBoardPage(this);
+		return new PatientDashBoardPage(this);
 	}
 	
 	private String trimPatientId(String id) {

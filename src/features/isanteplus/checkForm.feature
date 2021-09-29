@@ -11,6 +11,6 @@ Feature: Check Forms
   Then  Check that the following forms exist on the ‘Formulaire’ page
   
   Examples:
-      | patientSearch  |
-      | sharif shamirah|  
+      | patientSearch    |
+      | moses2          |  
      
