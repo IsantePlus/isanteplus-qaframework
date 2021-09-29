@@ -1,5 +1,7 @@
 package org.openmrs.contrib.isanteplus.qaframework.automation;
 
+import static org.junit.Assert.assertTrue;
+
 import org.openmrs.contrib.isanteplus.qaframework.RunTest;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.ClinicianFacingPatientDashboardPage;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.FindPatientPage;
@@ -12,6 +14,7 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class ConsultationSteps extends TestBase {
@@ -65,9 +68,9 @@ public class ConsultationSteps extends TestBase {
         patientDashBoardPage.waitForPageToLoad();
     }
 
-//    @Then("User is redirected to the Forms tab where new forms can be added and a list of history of forms is displayed")
-//    public void redirectedToForms() throws Exception {
-//        assertTrue(patientDashBoardPage.containsText("Forms History (Previous Filled in Forms)"));
-//        assertTrue(patientDashBoardPage.containsText("iSantePlus Forms"));
-//    }
+    @Then("User is redirected to the Forms tab where new forms can be added and a list of history of forms is displayed")
+    public void redirectedToForms() throws Exception {
+        assertTrue(patientDashBoardPage.containsText("Forms History (Previous Filled in Forms)"));
+        assertTrue(patientDashBoardPage.containsText("iSantePlus Forms"));
+    }
 }
