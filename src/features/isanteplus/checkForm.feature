@@ -12,5 +12,5 @@ Feature: Check Forms
   
   Examples:
       | patientSearch    |
-      | moses2          |  
+      |  mutesa          |  
      
