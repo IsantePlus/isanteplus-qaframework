@@ -30,6 +30,8 @@ This is the Isanteplus Automated testing Framework thats integrates both BDD wit
  See All test features bellow with their coresponding filter tags      
 
 
+
+
 | Test Feature        |Filter Tag      |
 |:------------------: |:-------------: |
 | Login               | @login         | 
@@ -38,12 +40,12 @@ This is the Isanteplus Automated testing Framework thats integrates both BDD wit
 | Changing Password   | @password      |
 | delete patient      | @deletepatient |
 | user management     | @userManagement|
-<<<<<<< HEAD
 |   Check Forms       | @checkForms    |
-=======
 | consultation        | @consultation  |
+| Patient summary     | @patientSummary|
+| consultation        | @consultation  |
+| Patient Coversheet  | @patientCoverSheet|
 
->>>>>>> branch 'main' of https://github.com/sherrif10/isanteplus-qaframework.git
 
 
        

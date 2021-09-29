@@ -29,12 +29,12 @@ public class UserManagementSteps extends TestBase {
 
     private HomePage homePage;
 
-    @After(RunTest.HOOK.USERMANAGEMENT)
+    @After(RunTest.HOOK.USER_MANAGEMENT)
     public void destroy() {
         quit();
     }
 
-    @Before(RunTest.HOOK.USERMANAGEMENT)
+    @Before(RunTest.HOOK.USER_MANAGEMENT)
     public void setLoginPage() {
         System.out.println(".... User management......");
         loginPage = new LoginPage(getWebDriver());
