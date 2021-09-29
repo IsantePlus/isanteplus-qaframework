@@ -38,7 +38,12 @@ This is the Isanteplus Automated testing Framework thats integrates both BDD wit
 | Changing Password   | @password      |
 | delete patient      | @deletepatient |
 | user management     | @userManagement|
+<<<<<<< HEAD
 |   Check Forms       | @checkForms    |
+=======
+| consultation        | @consultation  |
+
+>>>>>>> branch 'main' of https://github.com/sherrif10/isanteplus-qaframework.git
 
 
        
