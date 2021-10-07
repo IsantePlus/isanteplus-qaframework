@@ -46,5 +46,5 @@ This is the Isanteplus Automated testing Framework thats integrates both BDD wit
 | Reports             | @reports       |  
 | Check Forms         | @checkForms    | 
 | Patient Merge       | @patientMerge  |
-
+|  Forms              | @form          |
        

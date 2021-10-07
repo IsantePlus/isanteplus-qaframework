@@ -24,4 +24,4 @@ Feature: Adding a Patient
     |sharif1   |sharif1  |Male   |10 |STCODE3 |HAITI101 | haiti  |
     |moses3    |moses3   |Male   |17  |STCODE55|HAITI103 | haiti   |
     |sharif2   |sharif2  |Male   |12  |STCODE4 |HAITI102 | haiti   |
-
+    |cliff     |cliff2   |Male   |18|STCODE90  |HAITI30 | haiti  |

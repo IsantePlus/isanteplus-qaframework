@@ -39,6 +39,7 @@ public class RunTest {
 		public static final String USER_MANAGEMENT = "@userManagement";
 
 		public static final String PATIENT_SUMMARY = "@patientSummary";
+		public static final String FORM = "@form";
 
 		public static final String CONSULTATION = "@consultation";
 		
