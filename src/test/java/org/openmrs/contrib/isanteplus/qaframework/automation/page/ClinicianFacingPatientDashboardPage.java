@@ -10,6 +10,14 @@ public class ClinicianFacingPatientDashboardPage extends Page {
 
 	private static final By CONFIRM = By.xpath("/html/body/div[5]/div/div/div[2]/button[1]");
 
+	private static final By RECENT_CONSULTATION = By.xpath("/html/body/div[1]/div[3]/div[8]/div/div[2]/div/div[2]/visitbyencountertype/ul/li/a");
+
+	private static final By TERMINATE_CONSULTATION = By.xpath("/html/body/div[1]/div[3]/div[8]/div/div[3]/div/ul[1]/li/a");
+
+	private static final By FORMULAIRES = By.xpath("/html/body/div[1]/div[3]/div[8]/div/div[3]/div/ul[2]/li[4]/a");
+
+	private static final By CONFIRM_TERMINATION = By.xpath("/html/body/div[5]/div/div/div[2]/button[1]");
+
 	private static final By PREVIOUS_CONSULTATION = By.id("org.openmrs.module.coreapps.createRetrospectiveVisit");
 
 	private static final By CONFIRM_PREVIOUS_CONSULTATION = By.xpath("/html/body/div[5]/div/div/div[2]/button[2]");
@@ -43,6 +51,24 @@ public class ClinicianFacingPatientDashboardPage extends Page {
 		
 	public Boolean hasVistActionsColumn() {
 		return hasElement(COLUMN_VIST_ACTIONS);
+	}
+
+	public PatientDashBoardPage clickRecentConsultation() {
+		clickOn(RECENT_CONSULTATION);
+		return new PatientDashBoardPage(this);
+	}
+
+	public void clickTerminateConsultation() {
+		clickOn(TERMINATE_CONSULTATION);
+	}
+
+	public void clickConfirmTermination() {
+		clickOn(CONFIRM_TERMINATION);
+	}
+
+	public PatientHistoryFormPage clickFormulaires() {
+		clickOn(FORMULAIRES);
+		return new PatientHistoryFormPage(this);
 	}
 	
 	public PatientSummaryPage clickOnPatientSummary() {

@@ -46,5 +46,6 @@ public class RunTest {
 
 		public static final String PATIENT_MERGE = "@patientMerge";
 
+		public static final String FORM = "@form";
 	}
 }
