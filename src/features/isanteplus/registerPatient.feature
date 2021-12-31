@@ -4,8 +4,8 @@ Feature: Adding a Patient
     Given User logins in and goes to Home Page
 
   @register
-  Scenario Outline: Adding an Adult and Pediatric Patient
-  When From Main Menu, User selects 'Save Patient'
+  Scenario: Adding an Adult and Pediatric Patient
+  When From Main Menu, User selects 'Register a patient'
   And User Enters Date of Visit
   And User Enters patient’s First Name "<firstName>"
   And User Enters patient’s Last Name "<lastName>"
