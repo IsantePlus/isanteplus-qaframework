@@ -11,6 +11,7 @@ Feature: Adding a Patient
   And User Enters patient’s Last Name "<lastName>"
   And User Enters Sex "<gender>"
   And User Enters Date of Birth for patient as "<age>"
+  And User Enters Birthplace "<address>"
   And User Enters ST Code "<stCode>"
   And User Enters National ID "<nationalId>"
   And User Enters Address "<address>"

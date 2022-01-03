@@ -81,12 +81,17 @@ public class RegisterPatientSteps extends RemoteTestBase {
 
 	@And("User Enters National ID {string}")
 	public void enterNationalId(String nationalId) {
-		registerPatientPage.enterNatinalId(nationalId);
+		registerPatientPage.enterNationalId(nationalId);
 	}
 
 	@And("User Enters Address {string}")
 	public void enterAddress(String address) {
-		registerPatientPage.enterAddres(address);
+		registerPatientPage.enterAddress(address);
+	}
+
+	@And("User Enters Birthplace {string}")
+	public void enterBirthplace(String address) {
+		registerPatientPage.enterBirthplace(address);
 	}
 
 	@And("User Clicks Save")

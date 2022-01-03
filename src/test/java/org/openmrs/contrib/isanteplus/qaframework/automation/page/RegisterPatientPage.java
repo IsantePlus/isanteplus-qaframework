@@ -28,18 +28,22 @@ public class RegisterPatientPage extends Page {
 			
 	private static final By LABEL_NAME = By.xpath("//*[@id='formBreadcrumb']/li[3]/ul/li[1]/span");
 	
-	private static final By LABEL_ST_CODE = By.xpath("//*[@id='formBreadcrumb']/li[4]/ul/li[1]/span");
+	private static final By LABEL_ST_CODE = By.xpath("//*[@id='formBreadcrumb']/li[5]/ul/li[1]/span");
 	
-	private static final By LABEL_NATIONAL_ID = By.xpath("//*[@id='formBreadcrumb']/li[4]/ul/li[2]/span");
+	private static final By LABEL_NATIONAL_ID = By.xpath("//*[@id='formBreadcrumb']/li[5]/ul/li[2]/span");
 	
 	private static final By CONFIRM_SECTION = By.id("confirmation_label");
 	
 	private static final By BUTTON_SUBMIT = By.id("submit");
 	
-	private static final By LABEL_ADRESS = By.xpath("//*[@id='formBreadcrumb']/li[5]/ul/li[1]/span");
-		
+		private static final By LABEL_ADDRESS = By.xpath("//*[@id='contactInfo_label']//following::ul/li[1]/span");
+
 	private static final By VALIDATION_ERROR = By.xpath("//*[@id='validation-errors-content']/ul/li");
-	
+
+	private static final By FIELD_BIRTHPLACE = By.name("obsgroup.CIEL:165194.obs.CIEL:165198"); // By.xpath("//*[@id='placeOfBirth-conainer']/div/p[2]/input");
+
+	private static final By LABEL_BIRTHPLACE = By.id("birthPlace_label");
+
 	public RegisterPatientPage(Page parent) {
 		super(parent);
 	}
@@ -48,7 +52,7 @@ public class RegisterPatientPage extends Page {
 	public String getPageUrl() {
 		return PAGE_PATH;
 	}
-	
+
 	public void enterGivenName(String givenName) {
 		clickOn(LABEL_NAME);
 		setText(FIELD_GIVEN_NAME, givenName);
@@ -70,7 +74,7 @@ public class RegisterPatientPage extends Page {
 		selectOptionFromDropDown(DROP_DOWN_GENDER);
 	}
 	
-	public void enterNatinalId(String nationalId) {
+	public void enterNationalId(String nationalId) {
 		clickOn(LABEL_NATIONAL_ID);
 		setText(FIELD_NATIONAL_ID, nationalId);
 	}
@@ -80,11 +84,16 @@ public class RegisterPatientPage extends Page {
 		setText(FIELD_ST_CODE, stCode);
 	}
 	
-	public void enterAddres(String address) {
-		clickOn(LABEL_ADRESS);
+	public void enterAddress(String address) {
+		clickOn(LABEL_ADDRESS);
 		setText(FIELD_ADDRESS_COUNTRY, address);
 	}
-	
+
+	public void enterBirthplace(String address) {
+		clickOn(LABEL_BIRTHPLACE);
+		setText(FIELD_BIRTHPLACE, address);
+	}
+
 	public ClinicianFacingPatientDashboardPage savePatient() {
 		clickOn(CONFIRM_SECTION);
 		clickOn(BUTTON_SUBMIT);

@@ -23,9 +23,9 @@ public class RemoteTestBase implements ITestBase {
 
 	public static final int MAX_PAGE_LOAD_IN_SECONDS = 120;
 
-	public static final String REMOTE_URL_CHROME = "http://chrome:4444/wd/hub";
+	public static final String REMOTE_URL_CHROME = "http://localhost:4444/wd/hub";
 
-	public static String REMOTE_URL_FIREFOX = "http://firefox:4444/wd/hub";
+	public static String REMOTE_URL_FIREFOX = "http://localhost:4445/wd/hub";
 
 	public static final int MAX_SERVER_STARTUP_IN_MILLISECONDS = 10 * 60 * 1000;
 
@@ -81,13 +81,21 @@ public class RemoteTestBase implements ITestBase {
 		{
 			System.out.println("Inside Chrome");
 			ChromeOptions options = new ChromeOptions();
-			driver.set(new RemoteWebDriver(new URL(REMOTE_URL_CHROME), options));
+			String url = System.getenv("REMOTE_URL_CHROME");
+			if(url == null || url.isEmpty()) {
+				url = REMOTE_URL_CHROME;
+			}
+			driver.set(new RemoteWebDriver(new URL(url), options));
 		}
 		else if (browserName.equalsIgnoreCase("firefox"))
 		{
 			System.out.println("Inside Firefox");
 			FirefoxOptions options = new FirefoxOptions();
-			driver.set(new RemoteWebDriver(new URL(REMOTE_URL_FIREFOX), options));
+			String url = System.getenv("REMOTE_URL_FIREFOX");
+			if(url == null || url.isEmpty()) {
+				url = REMOTE_URL_FIREFOX;
+			}
+			driver.set(new RemoteWebDriver(new URL(url), options));
 		}
 	}
 

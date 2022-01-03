@@ -18,10 +18,13 @@ services:
 
   qa:
     build: .
-    image: test-image:latest
     container_name: qa_framework
     environment:
       - ISANTEPLUS_URL=https://isanteplus.sedish-haiti.org/openmrs
+      - ISANTEPLUS_USER=admin
+      - ISANTEPLUS_PW=Admin123
+      - REMOTE_URL_CHROME=http://chrome:4444/wd/hub
+      - TEST_OPTIONS="-Dcucumber.filter.tags=@login"
 
 
 
