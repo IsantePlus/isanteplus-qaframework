@@ -1,18 +1,18 @@
 package org.openmrs.contrib.isanteplus.qaframework.automation;
 
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.When;
 import org.openmrs.contrib.isanteplus.qaframework.RunTest;
-import org.openmrs.contrib.isanteplus.qaframework.automation.test.TestBase;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.AccountsPage;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.HomePage;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.LoginPage;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.ManageAccountsPage;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.SystemAdministrationPage;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.When;
+import org.openmrs.contrib.isanteplus.qaframework.automation.test.RemoteTestBase;
 
-public class ChangePasswordSteps extends TestBase {
+public class ChangePasswordSteps extends RemoteTestBase {
 	
 	private LoginPage loginPage;
 	
@@ -32,7 +32,7 @@ public class ChangePasswordSteps extends TestBase {
 	@Before(RunTest.HOOK.PASSWORD)
 	public void setLoginPage() {
 		System.out.println(".... Change Password......");
-		loginPage = new LoginPage(getWebDriver());
+		loginPage = new LoginPage(getDriver());
 	}
 	
 	@When("user logs into Isanteplus application and goes to the Home page")

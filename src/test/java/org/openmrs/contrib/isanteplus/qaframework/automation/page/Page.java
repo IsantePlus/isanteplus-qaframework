@@ -3,13 +3,12 @@ package org.openmrs.contrib.isanteplus.qaframework.automation.page;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
-import org.apache.commons.lang3.StringUtils;
 
 import com.google.common.collect.Iterables;
-
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.exception.PageRejectedException;
 import org.openmrs.contrib.isanteplus.qaframework.automation.test.TestBase;

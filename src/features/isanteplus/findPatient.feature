@@ -4,7 +4,7 @@ Feature: Patient Search
     Given User logs in the system
 
   @findPatient
-  Scenario: Searching for a patient Using Name and ST code
+  Scenario Outline: Searching for a patient Using Name and ST code
   And From the home page, User clicks 'search patient record' 
   And User Enters search Text "<searchText>" in 'Patient Search' box
   Then User Identifies patient in list

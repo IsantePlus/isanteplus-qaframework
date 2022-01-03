@@ -4,21 +4,20 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.UUID;
 
-import org.openmrs.contrib.isanteplus.qaframework.RunTest;
-import org.openmrs.contrib.isanteplus.qaframework.automation.page.HomePage;
-import org.openmrs.contrib.isanteplus.qaframework.automation.page.LoginPage;
-import org.openmrs.contrib.isanteplus.qaframework.automation.page.RegisterPatientPage;
-import org.openmrs.contrib.isanteplus.qaframework.automation.page.ClinicianFacingPatientDashboardPage;
-import org.openmrs.contrib.isanteplus.qaframework.automation.test.TestBase;
-
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openmrs.contrib.isanteplus.qaframework.RunTest;
+import org.openmrs.contrib.isanteplus.qaframework.automation.page.ClinicianFacingPatientDashboardPage;
+import org.openmrs.contrib.isanteplus.qaframework.automation.page.HomePage;
+import org.openmrs.contrib.isanteplus.qaframework.automation.page.LoginPage;
+import org.openmrs.contrib.isanteplus.qaframework.automation.page.RegisterPatientPage;
+import org.openmrs.contrib.isanteplus.qaframework.automation.test.RemoteTestBase;
 
-public class RegisterPatientSteps extends TestBase {
+public class RegisterPatientSteps extends RemoteTestBase {
 
 	private LoginPage loginPage;
 
@@ -35,7 +34,7 @@ public class RegisterPatientSteps extends TestBase {
 
 	@Before(RunTest.HOOK.REGISTRATION)
 	public void setLoginPage() {
-		loginPage = new LoginPage(getWebDriver());
+		loginPage = new LoginPage(getDriver());
 	}
 
 	@Given("User logins in and goes to Home Page")

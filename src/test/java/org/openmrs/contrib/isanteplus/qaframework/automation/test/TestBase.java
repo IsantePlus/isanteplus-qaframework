@@ -39,12 +39,8 @@ import org.openqa.selenium.firefox.FirefoxOptions;
  * <li>@see {@link #assertPage(Page)} - @see {@link #pageContent()}</li>
  * </ul>
  */
-public class TestBase {
-	
-	public static final int MAX_WAIT_IN_SECONDS = 120;
-	
-	public static final int MAX_PAGE_LOAD_IN_SECONDS = 120;
-	
+public class TestBase implements ITestBase {
+
 	public static final int MAX_SERVER_STARTUP_IN_MILLISECONDS = 10 * 60 * 1000;
 	
 	protected By patientHeaderId = By.cssSelector("div.identifiers span");
@@ -54,18 +50,19 @@ public class TestBase {
 	private WebDriver driver;
 	
 	protected Page page;
-	
+
 	public TestBase() {
 		try {
-			startWebDriver();
+			setup();
 		}
 		catch (Exception e) {
 			fail(e.getMessage());
 		}
 	}
-	
+
+	@Override
 	@Before
-	public void startWebDriver() throws Exception {
+	public void setup() throws Exception {
 		if (serverFailure) {
 			fail("Test killed due to server failure");
 		}
@@ -94,15 +91,14 @@ public class TestBase {
 		driver.manage().timeouts().pageLoadTimeout(MAX_PAGE_LOAD_IN_SECONDS, TimeUnit.SECONDS);
 		
 	}
-	
+
+	@Override
 	@After
-	public void stopWebDriver() {
-		if (driver != null) {
-			driver.quit();
-		}
+	public void teardown() {
+		quit();
 	}
 	
-	protected WebDriver getWebDriver() {
+	protected WebDriver getDriver() {
 		return driver;
 	}
 	
@@ -188,13 +184,14 @@ public class TestBase {
 	 * 
 	 * @param expected page
 	 */
+	@Override
 	public void assertPage(Page expected) {
 		assertTrue(driver.getCurrentUrl().contains(expected.getPageUrl()));
 	}
 	
 	protected void quit() {
-		if (getWebDriver() != null) {
-			getWebDriver().quit();
+		if (getDriver() != null) {
+			getDriver().quit();
 		}
 	}
 	
