@@ -1,5 +1,5 @@
 
-## Isanteplus Automated Testing Framework.
+# Isanteplus Automated Testing Framework.
 This is the Isanteplus Automated testing Framework thats integrates both BDD with Cucumber and Fuctional Testing with Selenium using the Page Object Model design for high Maintainability ,Readability and Re-usability
 
 [![ISANTEPLUS QA](https://github.com/IsantePlus/isanteplus-qaframework/actions/workflows/qa-local.yml/badge.svg)](https://github.com/IsantePlus/isanteplus-qaframework/actions/workflows/qa-local.yml)
@@ -48,4 +48,10 @@ This is the Isanteplus Automated testing Framework thats integrates both BDD wit
 | Patient Merge       | @patientMerge  |
 |  Forms              | @form          |
 
-       
+## Docker Approach
+*see https://github.com/SeleniumHQ/docker-selenium#quick-start*
+
+```shell
+docker-compose up -d chrome firefox
+docker-compose up qa
+```
