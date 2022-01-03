@@ -23,9 +23,9 @@ public class RemoteTestBase implements ITestBase {
 
 	public static final int MAX_PAGE_LOAD_IN_SECONDS = 120;
 
-	public static final String REMOTE_URL_CHROME = "http://localhost:4444/wd/hub";
+	public static final String REMOTE_URL_CHROME = "http://chrome:4444/wd/hub";
 
-	public static String REMOTE_URL_FIREFOX = "http://localhost:4445/wd/hub";
+	public static String REMOTE_URL_FIREFOX = "http://firefox:4444/wd/hub";
 
 	public static final int MAX_SERVER_STARTUP_IN_MILLISECONDS = 10 * 60 * 1000;
 

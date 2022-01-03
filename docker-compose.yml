@@ -16,7 +16,13 @@ services:
       - "4445:4444"
       - "7901:7900"
 
-  qa-framework:
+  qa:
+    build: .
     image: test-image:latest
+    container_name: qa_framework
+    environment:
+      - ISANTEPLUS_URL=https://isanteplus.sedish-haiti.org/openmrs
+
+
 
 

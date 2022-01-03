@@ -47,6 +47,7 @@ Feature: User Management
       | user        |reason             |
       | DO john     |user nolonger used |   
 
+  @ignore
   @userManagement
   Scenario Outline: Setting user access
   When From the main menu select System Administration app
@@ -59,4 +60,3 @@ Feature: User Management
   Examples:
     |userName |privillage |           
     |admin    |Full       |
-            
