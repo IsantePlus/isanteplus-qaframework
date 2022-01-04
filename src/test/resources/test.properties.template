@@ -1,5 +1,5 @@
 webapp.url=${ISANTEPLUS_URL}
-login.user=${ISANTEPLUS_USER}
+login.username=${ISANTEPLUS_USER}
 login.password=${ISANTEPLUS_PW}
 webdriver=chrome
 headless=true

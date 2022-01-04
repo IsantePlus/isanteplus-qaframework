@@ -68,7 +68,7 @@ public class LoginPage extends Page {
 		enterUsername(this.username);
 		enterPassword(this.password);
 		selectLocation();
-		// clickLoginButton();
+		clickLoginButton();
 		return new HomePage(this);
 	}
 	

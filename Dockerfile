@@ -23,7 +23,7 @@ ADD ./src /lib/src/
 
 RUN mvn install -DskipTests
 
-RUN rm /lib/src/test/resources/test.properties
+RUN rm /lib/target/test-classes/test.properties
 
 ENV ISANTEPLUS_URL=${ISANTEPLUS_URL}
 ENV ISANTEPLUS_USER=${ISANTEPLUS_USER}

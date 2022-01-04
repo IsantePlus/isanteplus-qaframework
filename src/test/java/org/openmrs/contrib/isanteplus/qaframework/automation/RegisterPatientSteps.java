@@ -40,6 +40,7 @@ public class RegisterPatientSteps extends RemoteTestBase {
 	@Given("User logins in and goes to Home Page")
 	public void visitLoginPage() throws Exception {
 		System.out.println(".... Adding a Patient......");
+		loginPage.waitForPage();
 		homePage = loginPage.goToHomePage();
 	}
 
