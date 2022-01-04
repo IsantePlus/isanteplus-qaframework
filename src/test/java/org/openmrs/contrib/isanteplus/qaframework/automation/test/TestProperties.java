@@ -14,11 +14,11 @@ public class TestProperties {
 	
 	public static final String LOGIN_PASSWORD_PROPERTY = "login.password";
 	
-	public static final String DEFAULT_PASSWORD = "admin";
+	public static final String DEFAULT_PASSWORD = "Admin123";
 	
 	public static final String LOGIN_USERNAME_PROPERTY = "login.username";
 	
-	public static final String DEFAULT_LOGIN_USERNAME = "Admin123";
+	public static final String DEFAULT_LOGIN_USERNAME = "admin";
 	
 	public static final String WEBAPP_URL_PROPERTY = "webapp.url";
 	
@@ -37,6 +37,7 @@ public class TestProperties {
 		try {
 			URL resource = Thread.currentThread().getContextClassLoader().getResource("test.properties");
 			if (resource != null) {
+				System.out.println("Found properties file: " + resource.getPath());
 				InputStream input = resource.openStream();
 				properties.load(new InputStreamReader(input, "UTF-8"));
 			}
@@ -84,6 +85,7 @@ public class TestProperties {
 	
 	public String getProperty(String property, String defaultValue) {
 		String value = System.getProperty(property);
+
 		if (value == null) {
 			value = System.getenv(property);
 		}

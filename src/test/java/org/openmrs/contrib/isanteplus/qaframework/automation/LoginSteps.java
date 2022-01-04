@@ -2,19 +2,18 @@ package org.openmrs.contrib.isanteplus.qaframework.automation;
 
 import static org.junit.Assert.assertTrue;
 
-import org.openmrs.contrib.isanteplus.qaframework.RunTest;
-import org.openmrs.contrib.isanteplus.qaframework.automation.page.HomePage;
-import org.openmrs.contrib.isanteplus.qaframework.automation.page.LoginPage;
-import org.openmrs.contrib.isanteplus.qaframework.automation.test.TestBase;
-
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openmrs.contrib.isanteplus.qaframework.RunTest;
+import org.openmrs.contrib.isanteplus.qaframework.automation.page.HomePage;
+import org.openmrs.contrib.isanteplus.qaframework.automation.page.LoginPage;
+import org.openmrs.contrib.isanteplus.qaframework.automation.test.RemoteTestBase;
 
-public class LoginSteps extends TestBase {
+public class LoginSteps extends RemoteTestBase {
 	
 	private LoginPage loginPage;
 	
@@ -27,8 +26,9 @@ public class LoginSteps extends TestBase {
 	
 	@Before(RunTest.HOOK.LOGIN)
 	public void setLoginPage() {
-		System.out.println(".... User Login......");
-		loginPage = new LoginPage(getWebDriver());
+		System.out.println(".... User"
+				+ " Login......");
+		loginPage = new LoginPage(getDriver());
 	}
 	
 	@Given("User visits login page")

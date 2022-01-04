@@ -1,9 +1,18 @@
 package org.openmrs.contrib.isanteplus.qaframework.automation;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.openmrs.contrib.isanteplus.qaframework.RunTest;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.ClinicianFacingPatientDashboardPage;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.FindPatientPage;
@@ -12,18 +21,9 @@ import org.openmrs.contrib.isanteplus.qaframework.automation.page.HtmlFormPage;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.LoginPage;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.PatientDashBoardPage;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.PatientHistoryFormPage;
-import org.openmrs.contrib.isanteplus.qaframework.automation.test.TestBase;
+import org.openmrs.contrib.isanteplus.qaframework.automation.test.RemoteTestBase;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-public class FormSteps extends TestBase {
+public class FormSteps extends RemoteTestBase {
 
     private LoginPage loginPage;
 
@@ -47,7 +47,7 @@ public class FormSteps extends TestBase {
     @Before(RunTest.HOOK.FORM)
     public void setLoginPage() {
         System.out.println("..... form .......");
-        loginPage = new LoginPage(getWebDriver());
+        loginPage = new LoginPage(getDriver());
     }
 
     @Given("user logs into Isanteplus system and goes to the Home page")

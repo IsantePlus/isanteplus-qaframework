@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+  chrome:
+    image: selenium/standalone-chrome
+    hostname: chrome
+    container_name: chrome
+    ports:
+      - "4444:4444"
+      - "7900:7900"
+
+  firefox:
+    image: selenium/standalone-firefox
+    hostname: firefox
+    container_name: firefox
+    ports:
+      - "4445:4444"
+      - "7901:7900"
+
+  qa:
+    build: .
+    container_name: qa
+    environment:
+      - ISANTEPLUS_URL=https://isanteplus.sedish-haiti.org/openmrs
+      - ISANTEPLUS_USER=admin
+      - ISANTEPLUS_PW=Admin123
+      - REMOTE_URL_CHROME=http://chrome:4444/wd/hub
+#      - TEST_OPTIONS="-Dcucumber.filter.tags=@checkForms"
+
+
+
+
+

@@ -2,22 +2,21 @@ package org.openmrs.contrib.isanteplus.qaframework.automation;
 
 import static org.junit.Assert.assertTrue;
 
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.openmrs.contrib.isanteplus.qaframework.RunTest;
-
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.AccountsPage;
-import org.openmrs.contrib.isanteplus.qaframework.automation.test.TestBase;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.HomePage;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.LoginPage;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.ManageAccountsPage;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.SystemAdministrationPage;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.When;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
+import org.openmrs.contrib.isanteplus.qaframework.automation.test.RemoteTestBase;
 
-public class UserManagementSteps extends TestBase {
+public class UserManagementSteps extends RemoteTestBase {
 
     private LoginPage loginPage;
 
@@ -37,7 +36,7 @@ public class UserManagementSteps extends TestBase {
     @Before(RunTest.HOOK.USER_MANAGEMENT)
     public void setLoginPage() {
         System.out.println(".... User management......");
-        loginPage = new LoginPage(getWebDriver());
+        loginPage = new LoginPage(getDriver());
     }
 
     @Given("client logs into Isanteplus application and goes to the Home page")

@@ -14,9 +14,9 @@ public class LoginPage extends Page {
 	
 	private final String LOGOUT_PATH = "/logout";
 	
-	private final By FIELD_USERNAME = By.id("username");
+	private final By FIELD_USERNAME = By.cssSelector("#login-form input#username");
 	
-	private final By FIELD_PASSWORD = By.id("password");
+	private final By FIELD_PASSWORD = By.cssSelector("#login-form input#password");
 	
 	private final By BUTTON_LOGIN = By.id("loginButton");
 	
