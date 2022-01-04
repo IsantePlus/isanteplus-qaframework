@@ -1,9 +1,8 @@
-[![Publish](https://github.com/IsantePlus/isanteplus-qaframework/actions/workflows/publish.yml/badge.svg)](https://github.com/IsantePlus/isanteplus-qaframework/actions/workflows/publish.yml)
-
 # Isanteplus Automated Testing Framework.
 This is the Isanteplus Automated testing Framework thats integrates both BDD with Cucumber and Fuctional Testing with Selenium using the Page Object Model design for high Maintainability ,Readability and Re-usability
 
-[![ISANTEPLUS QA](https://github.com/IsantePlus/isanteplus-qaframework/actions/workflows/qa-local.yml/badge.svg)](https://github.com/IsantePlus/isanteplus-qaframework/actions/workflows/qa-local.yml)
+[![Publish](https://github.com/IsantePlus/isanteplus-qaframework/actions/workflows/publish.yml/badge.svg)](https://github.com/IsantePlus/isanteplus-qaframework/actions/workflows/publish.yml)
+
 
 ## Installing dependencies 
 
