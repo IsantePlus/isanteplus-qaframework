@@ -33,5 +33,7 @@ ENV REMOTE_URL_FIREFOX=${REMOTE_URL_FIREFOX}
 
 ADD ./entrypoint.sh /lib/
 
+RUN chmod +x /lib/entrypoint.sh
+
 ENTRYPOINT /lib/entrypoint.sh
 
