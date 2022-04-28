@@ -19,10 +19,6 @@ Feature: Adding a Patient
   Then ‘Form Successfully Saved’ message and the newly added  patient Cover Sheet appears
   Examples:
     |firstName |lastName |gender | age|stCode  |nationalId| address|
-    |moses     |mutesa   |Male   | 20 |STCODE1 |HAIT123  | haiti   |
-    |moses2    |mutesa2  |Male   | 5  |STCODE2 |HAIT100  | haiti   |
-    |sharif    | sharif1 |Male   | 21 |STCODE3 |HAIT123  | haiti   |
-    |sharif1   |sharif1  |Male   |10 |STCODE3 |HAITI101 | haiti  |
-    |moses3    |moses3   |Male   |17  |STCODE55|HAITI103 | haiti   |
-    |sharif2   |sharif2  |Male   |12  |STCODE4 |HAITI102 | haiti   |
+    |herbert   |Moses    |Male   | 20 |STCODE1 |HAIT123   | haiti  |
+   
 
