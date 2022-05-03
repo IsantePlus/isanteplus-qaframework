@@ -16,7 +16,6 @@ Feature: Adding a Patient
   And User Enters National ID "<nationalId>"
   And User Enters Address "<address>"
   And User Clicks Save
-  Then ‘Form Successfully Saved’ message and the newly added  patient Cover Sheet appears
   Examples:
     |firstName |lastName |gender | age|stCode  |nationalId| address|
     |herbert   |Moses    |Male   | 20 |STCODE1 |HAIT123   | haiti  |
