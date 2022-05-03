@@ -41,7 +41,6 @@ public class RegisterPatientSteps extends RemoteTestBase {
 
 	@Given("User logins in and goes to Home Page")
 	public void visitLoginPage() throws Exception {
-		
 		homePage = loginPage.goToHomePage();
 	}
 
@@ -98,18 +97,16 @@ public class RegisterPatientSteps extends RemoteTestBase {
 
 	@And("User Clicks Save")
 	public void clickSave() {
-		registerPatientPage.savePatient();
-		//patientVisitsDashboardPage = registerPatientPage.savePatient();
-		 // if (registerPatientPage.hasValidationError()) {
-			//UUID uuid = UUID.randomUUID();
-			//registerPatientPage.enterStCode(uuid.toString());
-			//patientVisitsDashboardPage = registerPatientPage.savePatient();
-		//}
-		//patientVisitsDashboardPage.waitForPage();
+		 patientVisitsDashboardPage = registerPatientPage.savePatient();
+		 if (registerPatientPage.hasValidationError()) {
+			UUID uuid = UUID.randomUUID();
+			registerPatientPage.enterStCode(uuid.toString());
+			patientVisitsDashboardPage = registerPatientPage.savePatient();
+		}
 	}
 
 	@Then("‘Form Successfully Saved’ message and the newly added  patient Cover Sheet appears")
 	public void patientSaved() {
-		//assertTrue(patientVisitsDashboardPage.hasVistActionsColumn());
+		assertTrue(patientVisitsDashboardPage.hasVistActionsColumn());
 	}
 }

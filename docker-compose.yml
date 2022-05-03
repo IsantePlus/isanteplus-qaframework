@@ -20,7 +20,7 @@ services:
     build: .
     container_name: qa
     environment:
-      - ISANTEPLUS_URL=https://isanteplus.sedish-haiti.org/openmrs
+      - ISANTEPLUS_URL=https://iplus3.openelis-global.org/openmrs/
       - ISANTEPLUS_USER=admin
       - ISANTEPLUS_PW=Admin123
       - REMOTE_URL_CHROME=http://chrome:4444/wd/hub
