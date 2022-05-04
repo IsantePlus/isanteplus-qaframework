@@ -18,6 +18,6 @@ Feature: Adding a Patient
   And User Clicks Save
   Examples:
     |firstName |lastName |gender | age|stCode  |nationalId| address|
-    |herbert   |Moses    |Male   | 20 |STCODE1 |HAIT123   | haiti  |
-   
-
+    |herbert   |Moses    |Male   | 20 |STCODE1 |HAIT124   | haiti  |
+    |moses     |mutesa   |Male   | 20 |STCODE2 |HAIT123   | haiti  |
+    |sharif    |sharif1  |Male   | 21 |STCODE4 |HAIT123   | haiti  |
