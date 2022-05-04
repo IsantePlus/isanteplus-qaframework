@@ -49,13 +49,11 @@ public class RegisterPatientSteps extends RemoteTestBase {
 		Thread.sleep(8000);
 	    registerPatientPage = homePage.clickRegisterPatientApp();
 	}
-	
 	@And("User Enters Date of Visit")
 	public void enterDateOfVist() {
 		// by default today is selected
 		assertTrue(registerPatientPage.registrationDateIsChecked());
 	}
-	
 	@And("User Enters patient’s First Name {string}")
 	public void enterGivenName(String givenName) {
 		registerPatientPage.enterGivenName(givenName);
@@ -95,7 +93,6 @@ public class RegisterPatientSteps extends RemoteTestBase {
 	public void enterBirthplace(String address) {
 		registerPatientPage.enterBirthplace(address);
 	}
-	
 	@And("User Clicks Save")
 	public void clickSave() throws InterruptedException {
 		patientVisitsDashboardPage = registerPatientPage.savePatient();
