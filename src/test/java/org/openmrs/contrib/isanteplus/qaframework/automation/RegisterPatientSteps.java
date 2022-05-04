@@ -40,6 +40,7 @@ public class RegisterPatientSteps extends RemoteTestBase {
 
 	@Given("User logins in and goes to Home Page")
 	public void visitLoginPage() throws Exception {
+		System.out.println(".... Adding a Patient......");
 		homePage = loginPage.goToHomePage();
 	}
 
@@ -54,6 +55,7 @@ public class RegisterPatientSteps extends RemoteTestBase {
 		// by default today is selected
 		assertTrue(registerPatientPage.registrationDateIsChecked());
 	}
+	
 	@And("User Enters patient’s First Name {string}")
 	public void enterGivenName(String givenName) {
 		registerPatientPage.enterGivenName(givenName);
@@ -68,6 +70,7 @@ public class RegisterPatientSteps extends RemoteTestBase {
 	public void selectGender(String gender) {
 		registerPatientPage.selectGender(gender);
 	}
+	
 	@And("User Enters Date of Birth for patient as {string}")
 	public void enterDateOfBirth(String age) {
 		registerPatientPage.enterDateOfBirth(age);
@@ -102,12 +105,10 @@ public class RegisterPatientSteps extends RemoteTestBase {
 			registerPatientPage.enterStCode(uuid.toString());
 			patientVisitsDashboardPage = registerPatientPage.savePatient();
 		}
-
 	}
 	
 	@Then("‘Form Successfully Saved’ message and the newly added  patient Cover Sheet appears")
 	public void patientSaved() {
 		assertTrue(patientVisitsDashboardPage.hasVistActionsColumn());
 	}
-	
 }
