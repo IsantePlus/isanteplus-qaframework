@@ -34,7 +34,7 @@ public class RegisterPatientSteps extends RemoteTestBase {
 
 	@Before(RunTest.HOOK.REGISTRATION)
 	public void setLoginPage() {
-		System.out.println(".... User" + " Login......");
+		System.out.println(".... User Login......");
 		loginPage = new LoginPage(getDriver());
 	}
 
@@ -44,16 +44,16 @@ public class RegisterPatientSteps extends RemoteTestBase {
 	}
 
 	@When("From Main Menu, User selects 'Register a patient'")
-	public void clickRegisterPatient() {
-	  registerPatientPage = homePage.clickRegisterPatientApp();
+	public void clickRegisterPatient() throws InterruptedException {
+		Thread.sleep(8000);
+	    registerPatientPage = homePage.clickRegisterPatientApp();
 	}
-
+	
 	@And("User Enters Date of Visit")
 	public void enterDateOfVist() {
 		// by default today is selected
 		assertTrue(registerPatientPage.registrationDateIsChecked());
 	}
-
 	@And("User Enters patient’s First Name {string}")
 	public void enterGivenName(String givenName) {
 		registerPatientPage.enterGivenName(givenName);
@@ -68,7 +68,6 @@ public class RegisterPatientSteps extends RemoteTestBase {
 	public void selectGender(String gender) {
 		registerPatientPage.selectGender(gender);
 	}
-
 	@And("User Enters Date of Birth for patient as {string}")
 	public void enterDateOfBirth(String age) {
 		registerPatientPage.enterDateOfBirth(age);
@@ -93,22 +92,22 @@ public class RegisterPatientSteps extends RemoteTestBase {
 	public void enterBirthplace(String address) {
 		registerPatientPage.enterBirthplace(address);
 	}
-
+	
 	@And("User Clicks Save")
-	public void clickSave() {
-		    //patientVisitsDashboardPage = registerPatientPage.savePatient();
-		 if (registerPatientPage.hasValidationError()) {
+	public void clickSave() throws InterruptedException {
+		patientVisitsDashboardPage = registerPatientPage.savePatient();
+		Thread.sleep(9000);
+		if (registerPatientPage.hasValidationError()) {
 			UUID uuid = UUID.randomUUID();
 			registerPatientPage.enterStCode(uuid.toString());
-			//patientVisitsDashboardPage = registerPatientPage.savePatient();
+			patientVisitsDashboardPage = registerPatientPage.savePatient();
 		}
+
 	}
 	
-	/*
-
 	@Then("‘Form Successfully Saved’ message and the newly added  patient Cover Sheet appears")
 	public void patientSaved() {
 		assertTrue(patientVisitsDashboardPage.hasVistActionsColumn());
 	}
-	*/
+	
 }
