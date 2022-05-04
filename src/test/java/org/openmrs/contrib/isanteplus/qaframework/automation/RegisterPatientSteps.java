@@ -47,6 +47,7 @@ public class RegisterPatientSteps extends RemoteTestBase {
 	@When("From Main Menu, User selects 'Register a patient'")
 	public void clickRegisterPatient() throws InterruptedException {
 		Thread.sleep(8000);
+		registerPatientPage = homePage.clickRegisterPatientApp();
 	}
 	@And("User Enters Date of Visit")
 	public void enterDateOfVist() {
