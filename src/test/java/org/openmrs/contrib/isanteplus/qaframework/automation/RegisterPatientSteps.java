@@ -94,7 +94,7 @@ public class RegisterPatientSteps extends RemoteTestBase {
 		registerPatientPage.enterBirthplace(address);
 	}
 	@And("User Clicks Save")
-	public void clickSave() throws InterruptedException {
+	public void clickSave() {
 		patientVisitsDashboardPage = registerPatientPage.savePatient();
 		if (registerPatientPage.hasValidationError()) {
 			UUID uuid = UUID.randomUUID();
