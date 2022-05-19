@@ -2,6 +2,8 @@ package org.openmrs.contrib.isanteplus.qaframework.automation;
 
 import static org.junit.Assert.assertTrue;
 
+import java.io.IOException;
+
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
@@ -14,6 +16,7 @@ import org.openmrs.contrib.isanteplus.qaframework.automation.page.FindPatientPag
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.HomePage;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.LoginPage;
 import org.openmrs.contrib.isanteplus.qaframework.automation.test.RemoteTestBase;
+import org.openmrs.contrib.isanteplus.qaframework.util.TestsUtil;
 
 public class DeletePatientSteps extends RemoteTestBase {
 	
@@ -25,10 +28,17 @@ public class DeletePatientSteps extends RemoteTestBase {
 	
 	private HomePage homePage;
 	
+	private  String url = "https://iplus3.openelis-global.org/openmrs/ws/fhir2/R4/Patient/";
+	
+	private String username = "admin";
+	
+	private String password = "Admin123";
+	
 	private static String REASON = "patient discharged";
 	
 	@Before(RunTest.HOOK.DELETE_PATIENT)
-	public void setUp() {
+	public void setUp() throws IOException {
+		TestsUtil.addPatient(url,username,password);
 		loginPage = new LoginPage(getDriver());
 	}
 	
@@ -54,10 +64,11 @@ public class DeletePatientSteps extends RemoteTestBase {
 		Thread.sleep(2000);
 		findPatientPage.getFirstPatientIdentifier();
 		findPatientPage.clickOnFirstPatient();
+		Thread.sleep(8000);
 	}
 	
 	@And("User clicks 'Delete Patient'")
-	public void userClickOnDeletePatient() {
+	public void userClickOnDeletePatient() throws InterruptedException {
 		dashboardPage = findPatientPage.clickOnDeletePatient();
 	}
 	
