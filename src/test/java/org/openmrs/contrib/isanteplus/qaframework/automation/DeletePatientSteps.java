@@ -68,7 +68,7 @@ public class DeletePatientSteps extends RemoteTestBase {
 	}
 	
 	@And("User clicks 'Delete Patient'")
-	public void userClickOnDeletePatient() throws InterruptedException {
+	public void userClickOnDeletePatient() {
 		dashboardPage = findPatientPage.clickOnDeletePatient();
 	}
 	
