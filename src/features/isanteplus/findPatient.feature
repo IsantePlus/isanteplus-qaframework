@@ -13,8 +13,3 @@ Feature: Patient Search
    Examples:
       | searchText    |searchType |
       | Joel Ken      | Names     |
-      
-
-
-     
- 
