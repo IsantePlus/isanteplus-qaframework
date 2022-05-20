@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.io.IOException;
+
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
@@ -16,6 +18,7 @@ import org.openmrs.contrib.isanteplus.qaframework.automation.page.FindPatientPag
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.HomePage;
 import org.openmrs.contrib.isanteplus.qaframework.automation.page.LoginPage;
 import org.openmrs.contrib.isanteplus.qaframework.automation.test.RemoteTestBase;
+import org.openmrs.contrib.isanteplus.qaframework.util.TestsUtil;
 
 public class FindPatientSteps extends RemoteTestBase {
 	
@@ -27,12 +30,19 @@ public class FindPatientSteps extends RemoteTestBase {
 	
 	private HomePage homePage;
 	
+	private  String url = "https://iplus3.openelis-global.org/openmrs/ws/fhir2/R4/Patient/";
+
+	private String username = "admin";
+
+	private String password = "Admin123";
+	
 	String patientName;
 	
 	String patientIdetifier;
 	
 	@Before(RunTest.HOOK.FIND_PATIENT)
-	public void setUp() {
+	public void setUp() throws IOException {
+		TestsUtil.addPatient(url,username,password);
 		loginPage = new LoginPage(getDriver());
 	}
 	
