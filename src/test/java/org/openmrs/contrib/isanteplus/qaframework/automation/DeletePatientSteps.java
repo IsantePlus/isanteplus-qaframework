@@ -71,7 +71,7 @@ public class DeletePatientSteps extends RemoteTestBase {
 	
 	@And("User clicks 'Delete Patient'")
 	public void userClickOnDeletePatient() {
-		dashboardPage = findPatientPage.clickOnDeletePatient();;
+		dashboardPage = findPatientPage.clickOnDeletePatient();
 	}
 	
 	@Then("Patient deleted successfully message appears, and redirected to patient search page")
