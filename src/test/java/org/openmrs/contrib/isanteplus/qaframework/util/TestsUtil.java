@@ -11,10 +11,7 @@ import sun.misc.BASE64Encoder;
 
 public class TestsUtil {
 	
-	
-	public static void addPatient(String url, String username, String password) throws IOException {
-
-		String jsonData = "{\"resourceType\":\"Patient\",\"identifier\":[{\"id\":\"" + generateRandomUUID() + "\",\"extension\":[{\"url\":\"http://fhir.openmrs.org/ext/patient/identifier#location\",\"valueReference\":{\"reference\":\"Location/0a2c0967-2a56-41c9-9ad5-0bd959861b42\",\"type\":\"Location\",\"display\":\"CS de la Croix-des-Bouquets\"}}],\"use\":\"usual\",\"type\":{\"text\":\"Code National\"},\"system\":\"http://localhost:8000/openmrs/fhir2/5-code-national\",\"value\":\"01581\"}],\"active\":true,\"name\":[{\"id\":\"" + generateRandomUUID() + "\",\"family\":\"Kevin\",\"given\":[\"Tan\"]}],\"gender\":\"male\",\"birthDate\":\"1971-04-11\",\"deceasedBoolean\":false,\"address\":[{\"id\":\"" + generateRandomUUID() + "\",\"extension\":[{\"url\":\"http://fhir.openmrs.org/ext/address\",\"extension\":[{\"url\":\"http://fhir.openmrs.org/ext/address#address1\",\"valueString\":\"Address17001\"}]}],\"use\":\"home\",\"city\":\"City7001\",\"state\":\"State7001\",\"postalCode\":\"47002\",\"country\":\"Country7001\"}]}";
+	public static void addPatient(String url,String jsonData, String username, String password) throws IOException {
 			
 		BASE64Encoder enc = new sun.misc.BASE64Encoder();
 		String userpassword = username + ":" + password;
@@ -40,7 +37,7 @@ public class TestsUtil {
 
 	}
 	
-	private static String generateRandomUUID() {
+	public  static String generateRandomUUID() {
 		String uuid = UUID.randomUUID().toString();
 		return uuid;
 	}

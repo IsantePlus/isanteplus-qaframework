@@ -28,6 +28,8 @@ public class DeletePatientSteps extends RemoteTestBase {
 	
 	private HomePage homePage;
 	
+	private String jsonData = "{\"resourceType\":\"Patient\",\"identifier\":[{\"id\":\"" + TestsUtil.generateRandomUUID() + "\",\"extension\":[{\"url\":\"http://fhir.openmrs.org/ext/patient/identifier#location\",\"valueReference\":{\"reference\":\"Location/0a2c0967-2a56-41c9-9ad5-0bd959861b42\",\"type\":\"Location\",\"display\":\"CS de la Croix-des-Bouquets\"}}],\"use\":\"usual\",\"type\":{\"text\":\"Code National\"},\"system\":\"http://localhost:8000/openmrs/fhir2/5-code-national\",\"value\":\"01581\"}],\"active\":true,\"name\":[{\"id\":\"" + TestsUtil.generateRandomUUID() + "\",\"family\":\"Kevin\",\"given\":[\"Tan\"]}],\"gender\":\"male\",\"birthDate\":\"1971-04-11\",\"deceasedBoolean\":false,\"address\":[{\"id\":\"" + TestsUtil.generateRandomUUID() + "\",\"extension\":[{\"url\":\"http://fhir.openmrs.org/ext/address\",\"extension\":[{\"url\":\"http://fhir.openmrs.org/ext/address#address1\",\"valueString\":\"Address17001\"}]}],\"use\":\"home\",\"city\":\"City7001\",\"state\":\"State7001\",\"postalCode\":\"47002\",\"country\":\"Country7001\"}]}";
+	
 	private  String url = "https://iplus3.openelis-global.org/openmrs/ws/fhir2/R4/Patient/";
 	
 	private String username = "admin";
@@ -38,7 +40,7 @@ public class DeletePatientSteps extends RemoteTestBase {
 	
 	@Before(RunTest.HOOK.DELETE_PATIENT)
 	public void setUp() throws IOException {
-		TestsUtil.addPatient(url,username,password);
+		TestsUtil.addPatient(url,jsonData,username,password);
 		loginPage = new LoginPage(getDriver());
 	}
 	
@@ -68,8 +70,8 @@ public class DeletePatientSteps extends RemoteTestBase {
 	}
 	
 	@And("User clicks 'Delete Patient'")
-	public void userClickOnDeletePatient() {
-		dashboardPage = findPatientPage.clickOnDeletePatient();
+	public void userClickOnDeletePatient() throws InterruptedException {
+	    findPatientPage.clickOnDeletePatient();
 	}
 	
 	@Then("Patient deleted successfully message appears, and redirected to patient search page")
