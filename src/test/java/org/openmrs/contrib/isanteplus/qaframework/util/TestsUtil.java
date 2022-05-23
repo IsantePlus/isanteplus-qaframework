@@ -5,14 +5,16 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Random;
 import java.util.UUID;
 
 import sun.misc.BASE64Encoder;
 
 public class TestsUtil {
 	
-	public static void addPatient(String url,String jsonData, String username, String password) throws IOException {
-			
+
+	public static void addPatient(String url, String jsonData, String username, String password) throws IOException {
+
 		BASE64Encoder enc = new sun.misc.BASE64Encoder();
 		String userpassword = username + ":" + password;
 
@@ -36,10 +38,22 @@ public class TestsUtil {
 		new BufferedInputStream(postConnection.getInputStream());
 
 	}
-	
-	public  static String generateRandomUUID() {
+
+	public static String generateRandomUUID() {
 		String uuid = UUID.randomUUID().toString();
 		return uuid;
 	}
 
-}
+	public static String generateCodeST() {
+		Random rnd = new Random();
+		int number = rnd.nextInt(999999);
+		return String.format("%06d", number);
+	}
+	
+	public static String generateCodeNational() {
+		Random rnd = new Random();
+		int number = rnd.nextInt(99999);
+		return String.format("%05d", number);
+	}
+
+} 

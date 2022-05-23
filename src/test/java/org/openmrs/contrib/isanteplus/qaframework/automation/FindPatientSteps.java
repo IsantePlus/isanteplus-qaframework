@@ -67,7 +67,7 @@ public class FindPatientSteps extends RemoteTestBase {
 	}
 	
 	@When("User Clicks row with the patient being searching for")
-	public void clickFirstPatient() {
+	public void clickFirstPatient() throws InterruptedException {
 		clinicianFacingPatientDashboardPage = findPatientPage.clickOnFirstPatient();
 		clinicianFacingPatientDashboardPage.waitForPage();
 	}

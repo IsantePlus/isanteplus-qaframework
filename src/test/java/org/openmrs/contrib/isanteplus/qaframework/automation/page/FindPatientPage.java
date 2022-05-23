@@ -36,8 +36,9 @@ public class FindPatientPage extends Page {
 		setText(PATIENT_SEARCH, patientSearch);
 	}
 	
-	public ClinicianFacingPatientDashboardPage clickOnFirstPatient() {
+	public ClinicianFacingPatientDashboardPage clickOnFirstPatient() throws InterruptedException {
 		clickOn(PATIENT_NAME_SEARCH_RESULT);
+		Thread.sleep(70000);
 		return new ClinicianFacingPatientDashboardPage(this);
 	}
 	

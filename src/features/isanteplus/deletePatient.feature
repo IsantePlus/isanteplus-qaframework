@@ -11,4 +11,4 @@ Feature: Delete Patient
   Then  Patient deleted successfully message appears, and redirected to patient search page
    Examples:
       | patientName  | Reason            |
-      | Kevin Tan    | patient discharged|
+      | Stephen Josh | patient discharged|
