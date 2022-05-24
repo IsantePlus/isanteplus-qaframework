@@ -15,4 +15,4 @@ And  User Click ‘Yes, continue’
 Then Patient’s cover page with the data for the selected record is loaded
  Examples:
       | firstPatientId |secondPatientId |
-      | Keneth         | Geofrey        |
+      | Joseph         | Jeff           |
