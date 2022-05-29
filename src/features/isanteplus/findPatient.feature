@@ -12,4 +12,4 @@ Feature: Patient Search
   Then Selected patient’s 'Cover Page' will be displayed for the searchType "<searchType>"
    Examples:
       | searchText    |searchType |
-      | Joel Ken      | Names     |
+      | Paul Keba     | Names     |
