@@ -11,4 +11,4 @@ Feature: Patient Summary
   Then Patient summary should display in pdf format on the screen
    Examples:
       | patientName    |
-      | moses2 mutesa2 | 
+      | Kim Pius       | 
