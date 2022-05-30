@@ -11,7 +11,7 @@ import java.util.UUID;
 import sun.misc.BASE64Encoder;
 
 public class TestsUtil {
-	
+
 
 	public static void addPatient(String url, String jsonData, String username, String password) throws IOException {
 
@@ -49,6 +49,7 @@ public class TestsUtil {
 		int number = rnd.nextInt(999999);
 		return String.format("%06d", number);
 	}
+
 	
 	public static String generateCodeNational() {
 		Random rnd = new Random();
@@ -57,3 +58,6 @@ public class TestsUtil {
 	}
 
 } 
+
+
+
