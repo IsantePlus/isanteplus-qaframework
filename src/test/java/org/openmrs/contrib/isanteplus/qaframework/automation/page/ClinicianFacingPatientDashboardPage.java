@@ -34,7 +34,7 @@ public class ClinicianFacingPatientDashboardPage extends Page {
 	
 	protected By PATIENT_NAME_HEADER = By.xpath("//*[@id='breadcrumbs']/li[2]");
 	
-	private static final By START_CONSULTATION = By.cssSelector("#content > div.container > div > div.action-container.column > div > ul > h3");
+	private static final By START_CONSULTATION = By.id("org.openmrs.module.coreapps.createVisit");
 
 	private static final By START_CONFIRM_BUTTON = By.cssSelector("#start-visit-with-visittype-confirm > font > font");
 	
@@ -133,6 +133,11 @@ public class ClinicianFacingPatientDashboardPage extends Page {
 	
 	public PatientDashBoardPage clickOnRecentVisit() {
 		clickOn(RECENT_VISITS);
+		return new PatientDashBoardPage(this);
+	}
+	
+	public PatientDashBoardPage clickOnConfirmConsultation() {
+		clickConfirm();
 		return new PatientDashBoardPage(this);
 	}
 }
