@@ -9,4 +9,4 @@ Feature: Patient Cover sheet
   Then   Selected patient’s ‘Cover Sheet’ will be displayed with all the right details
    Examples:
       | patientName    |
-      | moses2 mutesa2|  
+      | Mayer Joice    | 
