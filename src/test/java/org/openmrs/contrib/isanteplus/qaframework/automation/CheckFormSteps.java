@@ -34,7 +34,7 @@ public class CheckFormSteps extends RemoteTestBase {
 	
 	private HomePage homePage;
 	
-    String familyName = TestsUtil.generateRandomString();
+	String familyName = TestsUtil.generateRandomString();
 	
 	String givenName = TestsUtil.generateRandomString();
 	
