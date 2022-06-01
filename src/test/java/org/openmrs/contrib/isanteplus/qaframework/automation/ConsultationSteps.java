@@ -83,7 +83,7 @@ public class ConsultationSteps extends RemoteTestBase {
     
     @And("Click ‘Confirmer’")
     public void clickConfirmer() throws Exception {
-    	patientDashBoardPage = clinicianFacingPatientDashboardPage.clickOnConfirmConsultation();
+    	patientDashBoardPage = clinicianFacingPatientDashboardPage.clickConfirm();
     	Thread.sleep(2000);
 	
    }
