@@ -1,10 +1,15 @@
 package org.openmrs.contrib.isanteplus.qaframework.util;
 
 import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Properties;
 import java.util.Random;
 import java.util.UUID;
 
@@ -13,8 +18,10 @@ import sun.misc.BASE64Encoder;
 public class TestsUtil {
 
 
-	public static void addPatient(String url, String jsonData, String username, String password) throws IOException {
-
+	public static void addPatient(String endPointToAppend, String jsonData, String username, String password) throws IOException {
+		
+		String url = getBaseUrl() + endPointToAppend;
+		
 		BASE64Encoder enc = new sun.misc.BASE64Encoder();
 		String userpassword = username + ":" + password;
 
@@ -50,14 +57,35 @@ public class TestsUtil {
 		return String.format("%06d", number);
 	}
 
-	
 	public static String generateCodeNational() {
 		Random rnd = new Random();
 		int number = rnd.nextInt(99999);
 		return String.format("%05d", number);
 	}
 
-} 
+	public static String generateRandomString() {
+		int leftLimit = 97; // letter 'a'
+		int rightLimit = 122; // letter 'z'
+		int targetStringLength = 5;
+		Random random = new Random();
 
+		String generatedString = random.ints(leftLimit, rightLimit + 1).limit(targetStringLength)
+				.collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append).toString();
+		return generatedString;
+	}
 
+	private static String getBaseUrl() throws IOException {
+		File file = new File("src/test/resources/test.properties");
 
+		InputStream input = new FileInputStream(file.getAbsolutePath());
+
+		Properties prop = new Properties();
+		// load a properties file
+		prop.load(input);
+
+		String baseUrl = prop.getProperty("webapp.url");
+		return baseUrl;
+
+	}
+
+}
