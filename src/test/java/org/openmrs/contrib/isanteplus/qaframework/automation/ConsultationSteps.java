@@ -91,7 +91,7 @@ public class ConsultationSteps extends RemoteTestBase {
     @Then("User is redirected to the Forms tab where new forms can be added and a list of history of forms is displayed")
     public void redirectedToForms() throws Exception {
         assertTrue(patientDashBoardPage.containsText("Historique des formulaires (Formulaires remplis précédemment)"));
-        assertTrue(patientDashBoardPage.containsText("Formulires"));
+        assertTrue(patientDashBoardPage.containsText("Formulaires"));
     }
     
     @And("Click “Ajouter consultation antérieure” under “Actions générales” menu on the right")
