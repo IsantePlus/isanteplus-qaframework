@@ -9,6 +9,8 @@ public class ClinicianFacingPatientDashboardPage extends Page {
 	private static final By CONSULTATION = By.xpath("/html/body/div[1]/div[3]/div[8]/div/div[3]/div/ul/li[1]/a");
 
 	private static final By CONFIRM = By.xpath("/html/body/div[5]/div/div/div[2]/button[1]");
+	
+	private static final By CONFIRM_CONSULTATION = By.cssSelector("#start-visit-with-visittype-confirm");
 
 	private static final By RECENT_CONSULTATION = By.xpath("/html/body/div[1]/div[3]/div[8]/div/div[2]/div/div[2]/visitbyencountertype/ul/li/a");
 
@@ -133,6 +135,11 @@ public class ClinicianFacingPatientDashboardPage extends Page {
 	
 	public PatientDashBoardPage clickOnRecentVisit() {
 		clickOn(RECENT_VISITS);
+		return new PatientDashBoardPage(this);
+	}
+	
+	public PatientDashBoardPage clickOnConfirmConsulation() {
+		clickOn(CONFIRM_CONSULTATION );
 		return new PatientDashBoardPage(this);
 	}
 }
