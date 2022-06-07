@@ -78,12 +78,12 @@ public class ConsultationSteps extends RemoteTestBase {
     @And("Click ‘Demarrer Consultation’ on the right")
     public void clickStartConsulation() throws Exception {
     	Thread.sleep(5000);
-    	clinicianFacingPatientDashboardPage.ClickOnStartConsultation();
+    	clinicianFacingPatientDashboardPage.clickStartConsultation();
     }
     
     @And("Click ‘Confirmer’")
     public void clickConfirmer() throws Exception {
-    	patientDashBoardPage = clinicianFacingPatientDashboardPage.clickConfirm();
+    	patientDashBoardPage = clinicianFacingPatientDashboardPage.clickOnConfirmConsulation();
     	Thread.sleep(2000);
 	
    }
@@ -94,21 +94,7 @@ public class ConsultationSteps extends RemoteTestBase {
         assertTrue(patientDashBoardPage.containsText("Formulaires"));
     }
     
-    @And("Click “Ajouter consultation antérieure” under “Actions générales” menu on the right")
-    public void clickAddPreviousConsultation() throws Exception {
-        clinicianFacingPatientDashboardPage.clickAddPreviousConsultation();
-    }
 
-    @And("On the Ajouter consultation antérieure pop up enter the Date de début and the Date de fin")
-    public void enterDates() throws Exception {
-        clinicianFacingPatientDashboardPage.selectDatesForPreviousConsultation();
-    }
-
-    @And("Click Confirm")
-    public void clickConfirm() throws Exception {
-        patientDashBoardPage = clinicianFacingPatientDashboardPage.clickConfirmPreviousConsultation();
-        Thread.sleep(5000);
-    }
   
 
 }
