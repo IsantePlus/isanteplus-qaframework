@@ -92,6 +92,7 @@ public class TestsUtil {
 	}
 
 	public static String generateIsantePlusId(String restUrl, String username, String password) {
+
 		BASE64Encoder enc = new sun.misc.BASE64Encoder();
 		String userpassword = username + ":" + password;
 		StringBuffer response = new StringBuffer();
@@ -100,7 +101,8 @@ public class TestsUtil {
 
 		URL obj;
 		try {
-			obj = new URL(restUrl);
+			String url = getBaseUrl() + restUrl;
+			obj = new URL(url);
 			HttpURLConnection postConnection = (HttpURLConnection) obj.openConnection();
 
 			postConnection.setConnectTimeout(6000);
