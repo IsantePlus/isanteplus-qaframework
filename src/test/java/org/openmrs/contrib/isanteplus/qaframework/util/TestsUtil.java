@@ -1,13 +1,16 @@
 package org.openmrs.contrib.isanteplus.qaframework.util;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
 import java.util.Random;
@@ -17,11 +20,11 @@ import sun.misc.BASE64Encoder;
 
 public class TestsUtil {
 
+	public static void addPatient(String endPointToAppend, String jsonData, String username, String password)
+			throws IOException {
 
-	public static void addPatient(String endPointToAppend, String jsonData, String username, String password) throws IOException {
-		
 		String url = getBaseUrl() + endPointToAppend;
-		
+
 		BASE64Encoder enc = new sun.misc.BASE64Encoder();
 		String userpassword = username + ":" + password;
 
@@ -85,6 +88,40 @@ public class TestsUtil {
 
 		String baseUrl = prop.getProperty("webapp.url");
 		return baseUrl;
+
+	}
+
+	public static String generateIsantePlusId(String restUrl, String username, String password) {
+
+		BASE64Encoder enc = new sun.misc.BASE64Encoder();
+		String userpassword = username + ":" + password;
+		StringBuffer response = new StringBuffer();
+
+		String encodedAuthorization = enc.encode(userpassword.getBytes());
+
+		URL obj;
+		try {
+			String url = getBaseUrl() + restUrl;
+			obj = new URL(url);
+			HttpURLConnection postConnection = (HttpURLConnection) obj.openConnection();
+
+			postConnection.setConnectTimeout(6000);
+			postConnection.setRequestProperty("Authorization", "Basic " + encodedAuthorization);
+			postConnection.setRequestMethod("GET");
+
+			BufferedReader reader = new BufferedReader(new InputStreamReader(postConnection.getInputStream()));
+
+			String output;
+
+			while ((output = reader.readLine()) != null) {
+				response.append(output);
+			}
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return response.toString().substring(32, 38);
 
 	}
 
