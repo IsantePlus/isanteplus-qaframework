@@ -27,13 +27,19 @@ public class PatientSummarySteps extends RemoteTestBase {
 	
 	private LoginPage loginPage;
 	
-	private String jsonData = "{\"resourceType\":\"Patient\",\"identifier\":[{\"id\":\"" + TestsUtil.generateRandomUUID() + "\",\"extension\":[{\"url\":\"http://fhir.openmrs.org/ext/patient/identifier#location\",\"valueReference\":{\"reference\":\"Location/0a2c0967-2a56-41c9-9ad5-0bd959861b42\",\"type\":\"Location\",\"display\":\"CS de la Croix-des-Bouquets\"}}],\"use\":\"usual\",\"type\":{\"text\":\"Code ST\"},\"system\":\"http://localhost:8000/openmrs/fhir2/6-code-st\",\"value\":\"" + TestsUtil.generateCodeST() + "\"}],\"active\":true,\"name\":[{\"id\":\"" + TestsUtil.generateRandomUUID() + "\",\"family\":\"Kim\",\"given\":[\"Pius\"]}],\"gender\":\"male\",\"birthDate\":\"1971-04-11\",\"deceasedBoolean\":false,\"address\":[{\"id\":\"" + TestsUtil.generateRandomUUID() + "\",\"extension\":[{\"url\":\"http://fhir.openmrs.org/ext/address\",\"extension\":[{\"url\":\"http://fhir.openmrs.org/ext/address#address1\",\"valueString\":\"Address17001\"}]}],\"use\":\"home\",\"city\":\"City7001\",\"state\":\"State7001\",\"postalCode\":\"47002\",\"country\":\"Country7001\"}]}";
-	
-	private  String url = "https://iplus3.openelis-global.org/openmrs/ws/fhir2/R4/Patient/";
+	private String endPointToAppend = "ws/fhir2/R4/Patient/";
 
+	private String familyName = TestsUtil.generateRandomString();
+
+	private String givenName = TestsUtil.generateRandomString();
+	
+	private String jsonData = "{\"resourceType\":\"Patient\",\"identifier\":[{\"id\":\"" + TestsUtil.generateRandomUUID() + "\",\"extension\":[{\"url\":\"http://fhir.openmrs.org/ext/patient/identifier#location\",\"valueReference\":{\"reference\":\"Location/0a2c0967-2a56-41c9-9ad5-0bd959861b42\",\"type\":\"Location\",\"display\":\"CS de la Croix-des-Bouquets\"}}],\"use\":\"usual\",\"type\":{\"text\":\"Code ST\"},\"system\":\"http://localhost:8000/openmrs/fhir2/6-code-st\",\"value\":\"" + TestsUtil.generateCodeST() + "\"}],\"active\":true,\"name\":[{\"id\":\"" + TestsUtil.generateRandomUUID() + "\",\"family\":\"" + familyName + "\",\"given\":[\"" + givenName + "\"]}],\"gender\":\"male\",\"birthDate\":\"1971-04-11\",\"deceasedBoolean\":false,\"address\":[{\"id\":\"" + TestsUtil.generateRandomUUID() + "\",\"extension\":[{\"url\":\"http://fhir.openmrs.org/ext/address\",\"extension\":[{\"url\":\"http://fhir.openmrs.org/ext/address#address1\",\"valueString\":\"Address17001\"}]}],\"use\":\"home\",\"city\":\"City7001\",\"state\":\"State7001\",\"postalCode\":\"47002\",\"country\":\"Country7001\"}]}";
+	
 	private String username = "admin";
 
 	private String password = "Admin123";
+	
+	private String name = familyName + " " + givenName;
 	
 	private PatientSummaryPage patientSummaryPage;
 	
@@ -41,7 +47,7 @@ public class PatientSummarySteps extends RemoteTestBase {
 	
 	@Before(RunTest.HOOK.PATIENT_SUMMARY)
 	public void setUp() throws IOException {
-		TestsUtil.addPatient(url,jsonData,username,password);
+		TestsUtil.addPatient(endPointToAppend,jsonData,username,password);
 		loginPage = new LoginPage(getDriver());
 	}
 	
@@ -56,10 +62,11 @@ public class PatientSummarySteps extends RemoteTestBase {
 		homePage = loginPage.goToHomePage();
 	}
 	
-	@When("Search for a Patient {string}")
-	public void searchForPatientAndloadPatientDashboardPage(String patientName) throws Exception {
+	@When("Search for a Patient")
+	public void searchForPatientAndloadPatientDashboardPage() throws Exception {
+		String searchText = name;
 		findPatientPage = homePage.clickOnSearchPatientRecord();
-		findPatientPage.enterPatientName(patientName);
+		findPatientPage.enterPatientName(searchText);
 		clinicianFacingPatientDashboardPage = findPatientPage.clickOnFirstPatient();
 	}
 	
