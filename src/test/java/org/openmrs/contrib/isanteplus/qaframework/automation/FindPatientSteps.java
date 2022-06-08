@@ -32,7 +32,7 @@ public class FindPatientSteps extends RemoteTestBase {
 	
 	private String jsonData = "{\"resourceType\":\"Patient\",\"identifier\":[{\"id\":\"" + TestsUtil.generateRandomUUID() + "\",\"extension\":[{\"url\":\"http://fhir.openmrs.org/ext/patient/identifier#location\",\"valueReference\":{\"reference\":\"Location/0a2c0967-2a56-41c9-9ad5-0bd959861b42\",\"type\":\"Location\",\"display\":\"CS de la Croix-des-Bouquets\"}}],\"use\":\"usual\",\"type\":{\"text\":\"Code ST\"},\"system\":\"http://localhost:8000/openmrs/fhir2/6-code-st\",\"value\":\"" + TestsUtil.generateCodeST() + "\"}],\"active\":true,\"name\":[{\"id\":\"" + TestsUtil.generateRandomUUID() + "\",\"family\":\"Paul\",\"given\":[\"Keba\"]}],\"gender\":\"male\",\"birthDate\":\"1971-04-11\",\"deceasedBoolean\":false,\"address\":[{\"id\":\"" + TestsUtil.generateRandomUUID() + "\",\"extension\":[{\"url\":\"http://fhir.openmrs.org/ext/address\",\"extension\":[{\"url\":\"http://fhir.openmrs.org/ext/address#address1\",\"valueString\":\"Address17001\"}]}],\"use\":\"home\",\"city\":\"City7001\",\"state\":\"State7001\",\"postalCode\":\"47002\",\"country\":\"Country7001\"}]}";
 
-	private  String url = "https://iplus3.openelis-global.org/openmrs/ws/fhir2/R4/Patient/";
+	private String endPointToAppend = "ws/fhir2/R4/Patient/";
 
 	private String username = "admin";
 
@@ -44,7 +44,7 @@ public class FindPatientSteps extends RemoteTestBase {
 	
 	@Before(RunTest.HOOK.FIND_PATIENT)
 	public void setUp() throws IOException {
-		TestsUtil.addPatient(url,jsonData,username,password);
+		TestsUtil.addPatient(endPointToAppend ,jsonData,username,password);
 		loginPage = new LoginPage(getDriver());
 	}
 	
