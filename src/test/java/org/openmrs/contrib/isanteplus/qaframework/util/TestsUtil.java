@@ -19,6 +19,31 @@ import java.util.UUID;
 import sun.misc.BASE64Encoder;
 
 public class TestsUtil {
+	
+	
+	
+	public static void main(String [] args) {
+	
+	 String restUrl  = "ws/rest/v1/idgen/nextIdentifier?source=1";
+	 
+	 String familyName = TestsUtil.generateRandomString();
+
+	 String givenName = TestsUtil.generateRandomString();
+	 
+     String familyName2 = TestsUtil.generateRandomString();
+
+     String givenName2 = TestsUtil.generateRandomString();
+	 
+	 String username = "admin";
+
+     String password = "Admin123";
+	 
+     String jsonData1 = "{\"resourceType\":\"Patient\",\"identifier\":[{\"id\":\"" + TestsUtil.generateRandomUUID() + "\",\"extension\":[{\"url\":\"http://fhir.openmrs.org/ext/patient/identifier#location\",\"valueReference\":{\"reference\":\"Location/8d6c993e-c2cc-11de-8d13-0010c6dffd0f\",\"type\":\"Location\"}}],\"use\":\"official\",\"type\":{\"text\":\"iSantePlus ID\"},\"system\":\"http://isanteplus.org/openmrs/fhir2/3-isanteplus-id\",\"value\":\"" + TestsUtil.generateIsantePlusId(restUrl,username,password) + "\"}],\"active\":true,\"name\":[{\"id\":\"" + TestsUtil.generateRandomUUID() + "\",\"family\":\"" + familyName + "\",\"given\":[\"" + givenName + "\"]}],\"gender\":\"male\",\"birthDate\":\"1971-04-11\",\"deceasedBoolean\":false,\"address\":[{\"id\":\"" + TestsUtil.generateRandomUUID() + "\",\"extension\":[{\"url\":\"http://fhir.openmrs.org/ext/address\",\"extension\":[{\"url\":\"http://fhir.openmrs.org/ext/address#address1\",\"valueString\":\"Address17001\"}]}],\"use\":\"home\",\"city\":\"City7001\",\"state\":\"State7001\",\"postalCode\":\"47002\",\"country\":\"Country7001\"}]}";
+	 
+	 
+	 System.out.println(jsonData1);
+	 
+	}
 
 	public static void addPatient(String endPointToAppend, String jsonData, String username, String password)
 			throws IOException {
