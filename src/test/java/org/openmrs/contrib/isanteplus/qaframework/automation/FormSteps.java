@@ -168,39 +168,4 @@ public class FormSteps extends RemoteTestBase {
         assertTrue(patientDashBoardPage.containsText("Analyse de Laboratoire"));
     }
 
-    @And("Click Formulaires under Actions generales menu on the right")
-    public void clickFormulairesTab() throws Exception {
-        patientHistoryFormPage = clinicianFacingPatientDashboardPage.clickFormulaires();
-    }
-
-    @And("The Form History page is now displayed")
-    public void labFormHistory() throws Exception {
-        assertTrue(patientHistoryFormPage.containsText("Analyse de Laboratoire"));
-        assertTrue(patientHistoryFormPage.containsText("Historique des formulaires (Formulaires remplis précédemment)"));
-    }
-
-    @And("Check the box on the Enlever column")
-    public void checkEnleverColumn() throws Exception {
-        patientHistoryFormPage.checkEnlever();
-    }
-
-    @And("Click the Supprimer selectionnee button to delete the selected forms")
-    public void clickSupprimerSelectionneeButton() throws Exception {
-        patientHistoryFormPage.clickSupprimerButton();
-        patientHistoryFormPage.acceptAlert();
-        patientHistoryFormPage.acceptAlert();
-    }
-
-    @Then("The form is deleted and the form history reloaded")
-    public void formIsDeleted() throws Exception {
-        assertTrue(patientHistoryFormPage.containsText("Supprimé"));
-        assertFalse(patientHistoryFormPage.containsText("Inconnu"));
-        assertTrue(patientHistoryFormPage.containsText("Historique des formulaires (Formulaires remplis précédemment)"));
-    }
-
-    public String getCurrentDate() {
-        Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        return formatter.format(date);
-    }  
 }
